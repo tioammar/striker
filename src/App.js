@@ -1,26 +1,52 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import TopBar from './components/TopBar';
+import Dashboard from './components/Dashboard';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import C3MR from './components/pages/C3MR';
+import TTR from './components/pages/TTR';
+import Gaul from './components/pages/Gaul';
+import Sales from './components/pages/Sales';
+import DetailKorter from './components/pages/DetailKorter';
+import { Paper } from '@material-ui/core';
+import { withStyles } from '@material-ui/styles';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const styles = theme => ({
+  paper: {
+    padding: 30,
+    margin: 'auto',
+    width: '80%',
+    marginTop: 20,
+  }
+});
+
+class App extends Component {
+
+  render() {
+    const {classes} = this.props;
+
+    return (
+      <div>
+      <Router>
+        <TopBar
+          image={'/' + process.env.PUBLIC_URL + '920153_TIO.jpg'}
+          username='Aditya'
+          fullname='Aditya Amirullah'
+          nik='920153'
+          unit='BPP'
+        />
+        <Route path='/' exact component={Dashboard}/>
+        <Route path='/korter' component={DetailKorter}/>   
+        <Route path='/sales' component={Sales}/>
+        <Route path='/gaul' component={Gaul}/>
+        <Route path='/ttr' component={TTR}/>
+        <Route path='/c3mr' component={C3MR}/>
+        {/* for setting param just add /:param. 
+        and get param on component by using props.match.params.param */}
+      </Router>
+      </div>
+    )
+  }
 }
 
-export default App;
+export default withStyles(styles)(App);
