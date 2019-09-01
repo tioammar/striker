@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { TableRow, TableCell, withStyles } from "@material-ui/core";
 
-function DataTable(props) {
+function TopTptTable(props) {
 
   const data = props.data
 
@@ -26,4 +26,4 @@ function DataTable(props) {
   )
 }
 
-export default DataTable;
+export default TopTptTable;
