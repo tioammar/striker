@@ -69,7 +69,7 @@ function PerfCard(props){
   )
 }
 
-class DetailKorter extends Component {
+class Detail extends Component {
 
   state = {
     year: 2019,
@@ -171,4 +171,4 @@ class DetailKorter extends Component {
   }
 }
 
-export default withStyles(styles)(DetailKorter)
+export default withStyles(styles)(Detail)

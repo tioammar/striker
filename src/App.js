@@ -4,7 +4,7 @@ import TopBar from './components/TopBar';
 import Dashboard from './components/Dashboard';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Page from './components/pages/Page';
-import DetailKorter from './components/pages/DetailKorter';
+import Detail from './components/pages/Detail';
 import { Paper } from '@material-ui/core';
 import { withStyles } from '@material-ui/styles';
 
@@ -33,7 +33,7 @@ class App extends Component {
           unit='BPP'
         />
         <Route path='/' exact component={Dashboard}/>
-        <Route path='/korter' component={DetailKorter}/>
+        <Route path='/korter' component={Detail}/>
         <Route path='/perf/:type' component={Page}/>
         {/* for setting param just add /:param. 
         and get param on component by using props.match.params.param */}
