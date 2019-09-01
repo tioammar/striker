@@ -183,10 +183,10 @@ class Main extends Component {
     }
 
     const datas = [
-      {title:'Sales', chart: 'bar', color:'#c62828', route:'/sales/', dummyData: sales, source:'CBD'},
-      {title:'Gaul', chart: 'bar', color:'#1565c0', route:'/gaul/', dummyData: gaul, source:'Nonatero'},
-      {title:'TTR 3 Jam', chart: 'bar', color:'#2e7d32', route:'/ttr/', dummyData: ttr, source:'Nonatero'},
-      {title:'C3MR', chart: 'bar', color:'#ef6c00', route:'/c3mr/', dummyData: c3mr, source:'MyBrains'}
+      {title:'Sales', chart: 'bar', color:'#c62828', route:'/perf/sales', dummyData: sales, source:'CBD'},
+      {title:'Gaul', chart: 'bar', color:'#1565c0', route:'/perf/gaul', dummyData: gaul, source:'Nonatero'},
+      {title:'TTR 3 Jam', chart: 'bar', color:'#2e7d32', route:'/perf/ttr', dummyData: ttr, source:'Nonatero'},
+      {title:'C3MR', chart: 'bar', color:'#ef6c00', route:'/perf/c3mr', dummyData: c3mr, source:'MyBrains'}
     ];
 
     let helper = new Helper();

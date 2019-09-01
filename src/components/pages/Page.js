@@ -25,7 +25,7 @@ const THead = withStyles(theme => ({
   }
 }))(TableCell);
 
-class Sales extends Component {
+class Page extends Component {
 
   state = {
     year: 2019,
@@ -47,6 +47,31 @@ class Sales extends Component {
 
   render() {
     const {classes} = this.props;
+    let title = '';
+    let unit = '';
+
+    switch(this.props.match.params.type){
+      case 'sales':
+        title = 'Sales';
+        unit = 'Consumer Service Regional Treg VII';
+        break;
+      case 'ttr':
+        title = 'TTR 3 Jam';
+        unit = 'Regional Operation Center Treg VII';
+        break;
+      case 'gaul':
+        title = 'Gangguan Ulang';
+        unit = 'Regional Operation Center Treg VII';
+        break;
+      case 'c3mr':
+        title = 'C3MR';
+        unit = 'Payment Collection & Finance Treg VII';
+        break;
+      default:
+        title = '';
+        unit = '';
+        break;
+    }
 
     const datasA = [
       {tpt: 'TPT A-1', target: 100, real: 110, growth: +15},
@@ -88,13 +113,14 @@ class Sales extends Component {
         datas = datasA;
     }
     let i = 1;
+
     return (
       <div>
       <Paper className={classes.paper}>
       <Grid container xs={12}>
         <Grid item xs={8}>
-          <Typography variant='h5'>Sales</Typography>
-          <Typography variant='body2' color='textSecondary'>Consumer Marketing TReg VII</Typography>
+          <Typography variant='h5'>{title}</Typography>
+          <Typography variant='body2' color='textSecondary'>{unit}</Typography>
           {/* blank */}
         </Grid>
         <Grid item xs={4}>
@@ -132,4 +158,4 @@ class Sales extends Component {
   }
 }
 
-export default withStyles(styles)(Sales);
+export default withStyles(styles)(Page);
