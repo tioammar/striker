@@ -3,10 +3,15 @@ import { TableRow, TableCell, withStyles } from "@material-ui/core";
 
 function DataTable(props) {
 
-  const data = props.data
+  const data = props.data;
+  const index = props.index;
 
   function getAchievement(){
     return ((data.real / data.target) * 100).toFixed(2);
+  }
+
+  function isUbis(){
+    return props.isUbis;
   }
 
   function isGrowth(){
@@ -23,10 +28,12 @@ function DataTable(props) {
 
   return (
     <TableRow>
-      <TableCell>{props.index}.</TableCell>
-      <TableCell>{data.tpt}</TableCell>
-      <TableCell>Witel X</TableCell>
+      <TableCell>{index}.</TableCell>
+      <TableCell>{data.name}</TableCell>
       <TableCell>Datel X</TableCell>
+      {isUbis() ? 
+      '' :
+      <TableCell>Witel X</TableCell>}
       <TableCell align='right'>{data.target}</TableCell>
       <TableCell align='right'>{data.real}</TableCell>
       {isAchieve() ? 

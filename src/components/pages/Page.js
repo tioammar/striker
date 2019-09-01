@@ -147,7 +147,7 @@ class Page extends Component {
           </TableHead>
           <TableBody>
             {datas.map(data => (
-              <DataTable index={i++} data={data}/>
+              <DataTable index={i++} data={data} isUbis={false}/>
             ))}
           </TableBody>
         </Table>
