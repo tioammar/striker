@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid, MenuItem, Select, FormControl, InputLabel } from "@material-ui/core";
 
 function Selector(props){
+
   const months = [
     {n: 'Januari', v: 1},
     {n: 'Februari', v: 2},

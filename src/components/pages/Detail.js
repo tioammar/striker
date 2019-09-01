@@ -69,7 +69,7 @@ function PerfCard(props){
   )
 }
 
-class DetailKorter extends Component {
+class Detail extends Component {
 
   state = {
     year: 2019,
@@ -144,7 +144,9 @@ class DetailKorter extends Component {
         <Grid item xs={12}>
           <Card>
             <CardHeader
-              title='Personil TPT'/>
+              title='Personil'
+              subheader={'TPT: '+this.props.match.params.id}
+              subheaderTypographyProps={{variant:'body2', color:'textSecondary'}}/>
             <CardContent>
               <Table>
                 <TableHead>
@@ -171,4 +173,4 @@ class DetailKorter extends Component {
   }
 }
 
-export default withStyles(styles)(DetailKorter)
+export default withStyles(styles)(Detail)
