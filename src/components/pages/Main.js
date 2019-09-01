@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withStyles, Grid, Card, CardHeader, CardContent, Table, TableHead, TableRow, TableCell, TableBody, Typography } from "@material-ui/core";
 import Charts from '../charts/Charts';
 import Selector from '../Selector';
-import TopTptTable from '../table/TopTptTable';
+import TopTable from '../table/TopTable';
 import Helper from '../../Helper';
 
 const styles = theme => ({
@@ -132,21 +132,27 @@ class Main extends Component {
     let gaul = [];
 
     const scoresA = [
-      {i: 1, tpt:'TPT 1', witel:'Witel A', datel:'Datel A', class:'A', score:(Math.random() * (105 - 101) + 101).toFixed(2)},
-      {i: 2, tpt:'TPT 2', witel:'Witel B', datel:'Datel B', class:'A', score:(Math.random() * (100 - 96) + 96).toFixed(2)},
-      {i: 3, tpt:'TPT 3', witel:'Witel C', datel:'Datel C', class:'A', score:(Math.random() * (95 - 91) + 91).toFixed(2)},
+      {i: 1, name:'TPT 1', witel:'Witel A', datel:'Datel A', class:'A', score:(Math.random() * (105 - 101) + 101).toFixed(2)},
+      {i: 2, name:'TPT 2', witel:'Witel B', datel:'Datel B', class:'A', score:(Math.random() * (100 - 96) + 96).toFixed(2)},
+      {i: 3, name:'TPT 3', witel:'Witel C', datel:'Datel C', class:'A', score:(Math.random() * (95 - 91) + 91).toFixed(2)},
     ];
 
     const scoresB = [
-      {i: 1, tpt:'TPT 1', witel:'Witel A', datel:'Datel A', class:'B', score:(Math.random() * (105 - 101) + 101).toFixed(2)},
-      {i: 2, tpt:'TPT 2', witel:'Witel B', datel:'Datel B', class:'B', score:(Math.random() * (100 - 96) + 96).toFixed(2)},
-      {i: 3, tpt:'TPT 3', witel:'Witel C', datel:'Datel C', class:'B', score:(Math.random() * (95 - 91) + 91).toFixed(2)},
+      {i: 1, name:'TPT 1', witel:'Witel A', datel:'Datel A', class:'B', score:(Math.random() * (105 - 101) + 101).toFixed(2)},
+      {i: 2, name:'TPT 2', witel:'Witel B', datel:'Datel B', class:'B', score:(Math.random() * (100 - 96) + 96).toFixed(2)},
+      {i: 3, name:'TPT 3', witel:'Witel C', datel:'Datel C', class:'B', score:(Math.random() * (95 - 91) + 91).toFixed(2)},
     ];
 
     const scoresC = [
-      {i:'TPT 1', witel:'Witel A', datel:'Datel A', class:'C', score:(Math.random() * (105 - 101) + 101).toFixed(2)},
-      {i:'TPT 2', witel:'Witel B', datel:'Datel B', class:'C', score:(Math.random() * (100 - 96) + 96).toFixed(2)},
-      {i:'TPT 3', witel:'Witel C', datel:'Datel C', class:'C', score:(Math.random() * (95 - 91) + 91).toFixed(2)},
+      {i: 1, name: 'TPT 1', witel:'Witel A', datel:'Datel A', class:'C', score:(Math.random() * (105 - 101) + 101).toFixed(2)},
+      {i: 2, name: 'TPT 2', witel:'Witel B', datel:'Datel B', class:'C', score:(Math.random() * (100 - 96) + 96).toFixed(2)},
+      {i: 3, name: 'TPT 3', witel:'Witel C', datel:'Datel C', class:'C', score:(Math.random() * (95 - 91) + 91).toFixed(2)},
+    ];
+
+    const scoresUbis = [
+      {i: 1, name:'Datel 1', witel:'Witel A', score:(Math.random() * (105 - 101) + 101).toFixed(2)},
+      {i: 2, name:'Ubis 1', witel:'Witel B', score:(Math.random() * (100 - 96) + 96).toFixed(2)},
+      {i: 3, name:'Datel 2', witel:'Witel C', score:(Math.random() * (95 - 91) + 91).toFixed(2)},
     ];
 
     let scores = [];
@@ -184,7 +190,7 @@ class Main extends Component {
 
     const datas = [
       {title:'Sales', chart: 'bar', color:'#c62828', route:'/perf/sales', dummyData: sales, source:'CBD'},
-      {title:'Gaul', chart: 'bar', color:'#1565c0', route:'/perf/gaul', dummyData: gaul, source:'Nonatero'},
+      {title:'Gangguan Ulang', chart: 'bar', color:'#1565c0', route:'/perf/gaul', dummyData: gaul, source:'Nonatero'},
       {title:'TTR 3 Jam', chart: 'bar', color:'#2e7d32', route:'/perf/ttr', dummyData: ttr, source:'Nonatero'},
       {title:'C3MR', chart: 'bar', color:'#ef6c00', route:'/perf/c3mr', dummyData: c3mr, source:'MyBrains'}
     ];
@@ -206,7 +212,34 @@ class Main extends Component {
         </Grid>
       </Grid>
       <Grid spacing={2} container>
-      <Grid item xs={8}>
+      <Grid item xs={6}>
+        <Card>
+          <CardHeader 
+            title="Top 3 Datel/Ubis" 
+            titleTypographyProps={{variant:'h6'}}
+            subheader={'Mtd '+month+' '+this.state.year}
+            subheaderTypographyProps={{variant:'buttom', color:'textSecondary'}}/>
+          <CardContent>        
+            <Table className={classes.table}>
+            {/*   // Order: TPT | Witel | Datel | Kelas | Skor  */}
+              <TableHead>
+                <TableRow>
+                  <THead>No. </THead>
+                  <THead>Datel/Ubis</THead>
+                  <THead align='right'>Witel</THead>
+                  <THead align='right'>Skor</THead>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {scoresUbis.map(score => (
+                  <TopTable data={score} isUbis={true}/>
+                ))}
+              </TableBody>
+            </Table>
+          </CardContent>
+        </Card>
+      </Grid>
+      <Grid item xs={6}>
         <Card>
           <CardHeader 
             title="Top 3 TPT" 
@@ -220,15 +253,15 @@ class Main extends Component {
                 <TableRow>
                   <THead>No. </THead>
                   <THead>TPT</THead>
-                  <THead align='right'>Witel</THead>
                   <THead align='right'>Datel</THead>
+                  <THead align='right'>Witel</THead>
                   <THead align='right'>Kelas</THead>
                   <THead align='right'>Skor</THead>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {scores.map(score => (
-                  <TopTptTable data={score}/>
+                  <TopTable data={score} isUbis={false}/>
                 ))}
               </TableBody>
             </Table>

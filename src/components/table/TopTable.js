@@ -1,9 +1,13 @@
 import React, { Component } from "react";
 import { TableRow, TableCell, withStyles } from "@material-ui/core";
 
-function TopTptTable(props) {
+function TopTable(props) {
 
   const data = props.data
+
+  function isUbis(){
+    return props.isUbis;
+  }
 
   function isAchieve(){
     if(data.score >= 100){
@@ -15,10 +19,10 @@ function TopTptTable(props) {
   return (
     <TableRow>
       <TableCell>{data.i}.</TableCell>
-      <TableCell>{data.tpt}</TableCell>
+      <TableCell>{data.name}</TableCell>
+      {isUbis() ? '' : <TableCell align='right'>{data.datel}</TableCell>}
       <TableCell align='right'>{data.witel}</TableCell>
-      <TableCell align='right'>{data.datel}</TableCell>
-      <TableCell align='right'>{data.class}</TableCell>
+      {isUbis() ? '' : <TableCell align='right'>{data.class}</TableCell>}
       {isAchieve() ? 
         <TableCell align='right' style={{color: '#2e7d32'}}>{data.score} %</TableCell> : 
         <TableCell align='right' style={{color: '#c62828'}}>{data.score} %</TableCell>}
@@ -26,4 +30,4 @@ function TopTptTable(props) {
   )
 }
 
-export default TopTptTable;
+export default TopTable;
