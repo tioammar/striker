@@ -1,5 +1,5 @@
 import React from 'react';
-import { ResponsiveContainer, BarChart, Bar, LineChart, XAxis, YAxis,Tooltip, Line } from 'recharts';
+import { ResponsiveContainer, AreaChart, Area, BarChart, Bar, LineChart, XAxis, YAxis,Tooltip, Line } from 'recharts';
 import { Paper, Typography, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 
@@ -35,22 +35,21 @@ function SimpleLineCharts(props){
   const color = props.color;
 
   return (
-    // <ResponsiveContainer>
-    //   <LineChart data={data} height={300}>
-    //     <XAxis dataKey="m" />
-    //     <YAxis />
-    //     <Tooltip />
-    //     <Line type="monotone" dataKey="ach" stroke={color} />
-    //   </LineChart>
-    // </ResponsiveContainer>
     <ResponsiveContainer width='100%' height={200}> 
-      <LineChart data={data}>
+      {/* <LineChart data={data}>
         <XAxis dataKey="m" tick={{fontSize: 12}}/>
         <YAxis tick={{fontSize: 12}} domain={['dataMin - 10', 'dataMax + 10']}/>
         <Tooltip content={<CustTooltip />}/>
         <Line type='monotone' dataKey="ach" stroke={color} activeDot={{r: 8}}>
         </Line>
-      </LineChart>  
+      </LineChart>   */}
+      <AreaChart data={data}>
+        <XAxis dataKey="m" tick={{fontSize: 12}}/>
+        <YAxis tick={{fontSize: 12}} domain={['dataMin - 10', 'dataMax + 10']}/>
+        <Tooltip content={<CustTooltip />}/>
+        <Area type='monotone' dataKey="ach" stroke={color} fill={color} activeDot={{r: 5}} dot={{r: 2}}>
+        </Area>
+      </AreaChart>  
     </ResponsiveContainer>
   )
 }

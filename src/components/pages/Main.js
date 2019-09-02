@@ -50,79 +50,79 @@ class Main extends Component {
     const {classes} = this.props;
 
     const c3mrA = [      
-      {tpt:'TPT A-1', ach:(Math.random() * (100 - 91) + 91).toFixed(2)},
-      {tpt:'TPT A-2', ach:(Math.random() * (90 - 81) + 81).toFixed(2)},
-      {tpt:'TPT A-3', ach:(Math.random() * (80 - 71) + 71).toFixed(2)},
-      {tpt:'TPT A-4', ach:(Math.random() * (70 - 61) + 61).toFixed(2)}
+      {name:'TPT A-1', ach:(Math.random() * (100 - 91) + 91).toFixed(2)},
+      {name:'TPT A-2', ach:(Math.random() * (90 - 81) + 81).toFixed(2)},
+      {name:'TPT A-3', ach:(Math.random() * (80 - 71) + 71).toFixed(2)},
+      {name:'TPT A-4', ach:(Math.random() * (70 - 61) + 61).toFixed(2)}
     ]; 
     const c3mrB = [      
-      {tpt:'TPT B-1', ach:(Math.random() * (100 - 91) + 91).toFixed(2)},
-      {tpt:'TPT B-2', ach:(Math.random() * (90 - 81) + 81).toFixed(2)},
-      {tpt:'TPT B-3', ach:(Math.random() * (80 - 71) + 71).toFixed(2)},
-      {tpt:'TPT B-4', ach:(Math.random() * (70 - 61) + 61).toFixed(2)},
+      {name:'TPT B-1', ach:(Math.random() * (100 - 91) + 91).toFixed(2)},
+      {name:'TPT B-2', ach:(Math.random() * (90 - 81) + 81).toFixed(2)},
+      {name:'TPT B-3', ach:(Math.random() * (80 - 71) + 71).toFixed(2)},
+      {name:'TPT B-4', ach:(Math.random() * (70 - 61) + 61).toFixed(2)},
     ];
     const c3mrC = [      
-      {tpt:'TPT C-1', ach:(Math.random() * (100 - 91) + 91).toFixed(2)},
-      {tpt:'TPT C-2', ach:(Math.random() * (90 - 81) + 81).toFixed(2)},
-      {tpt:'TPT C-3', ach:(Math.random() * (80 - 71) + 71).toFixed(2)},
-      {tpt:'TPT C-4', ach:(Math.random() * (70 - 61) + 61).toFixed(2)},
+      {name:'TPT C-1', ach:(Math.random() * (100 - 91) + 91).toFixed(2)},
+      {name:'TPT C-2', ach:(Math.random() * (90 - 81) + 81).toFixed(2)},
+      {name:'TPT C-3', ach:(Math.random() * (80 - 71) + 71).toFixed(2)},
+      {name:'TPT C-4', ach:(Math.random() * (70 - 61) + 61).toFixed(2)},
     ];
 
     const salesA = [      
-      {tpt:'TPT A-1', ach:(Math.random() * (100 - 91) + 91).toFixed(2)},
-      {tpt:'TPT A-2', ach:(Math.random() * (90 - 81) + 81).toFixed(2)},
-      {tpt:'TPT A-3', ach:(Math.random() * (80 - 71) + 71).toFixed(2)},
-      {tpt:'TPT A-4', ach:(Math.random() * (70 - 61) + 61).toFixed(2)},
+      {name:'TPT A-1', ach:(Math.random() * (100 - 91) + 91).toFixed(2)},
+      {name:'TPT A-2', ach:(Math.random() * (90 - 81) + 81).toFixed(2)},
+      {name:'TPT A-3', ach:(Math.random() * (80 - 71) + 71).toFixed(2)},
+      {name:'TPT A-4', ach:(Math.random() * (70 - 61) + 61).toFixed(2)},
     ]; 
     const salesB = [      
-      {tpt:'TPT B-1', ach:(Math.random() * (100 - 91) + 91).toFixed(2)},
-      {tpt:'TPT B-2', ach:(Math.random() * (90 - 81) + 81).toFixed(2)},
-      {tpt:'TPT B-3', ach:(Math.random() * (80 - 71) + 71).toFixed(2)},
-      {tpt:'TPT B-4', ach:(Math.random() * (70 - 61) + 61).toFixed(2)},
+      {name:'TPT B-1', ach:(Math.random() * (100 - 91) + 91).toFixed(2)},
+      {name:'TPT B-2', ach:(Math.random() * (90 - 81) + 81).toFixed(2)},
+      {name:'TPT B-3', ach:(Math.random() * (80 - 71) + 71).toFixed(2)},
+      {name:'TPT B-4', ach:(Math.random() * (70 - 61) + 61).toFixed(2)},
     ];
     const salesC = [      
-      {tpt:'TPT C-1', ach:(Math.random() * (100 - 91) + 91).toFixed(2)},
-      {tpt:'TPT C-2', ach:(Math.random() * (90 - 81) + 81).toFixed(2)},
-      {tpt:'TPT C-3', ach:(Math.random() * (80 - 71) + 71).toFixed(2)},
-      {tpt:'TPT C-4', ach:(Math.random() * (70 - 61) + 61).toFixed(2)},
+      {name:'TPT C-1', ach:(Math.random() * (100 - 91) + 91).toFixed(2)},
+      {name:'TPT C-2', ach:(Math.random() * (90 - 81) + 81).toFixed(2)},
+      {name:'TPT C-3', ach:(Math.random() * (80 - 71) + 71).toFixed(2)},
+      {name:'TPT C-4', ach:(Math.random() * (70 - 61) + 61).toFixed(2)},
     ];
 
     const ttrA = [      
-      {tpt:'TPT A-1', ach:(Math.random() * (100 - 91) + 91).toFixed(2)},
-      {tpt:'TPT A-2', ach:(Math.random() * (90 - 81) + 81).toFixed(2)},
-      {tpt:'TPT A-3', ach:(Math.random() * (80 - 71) + 71).toFixed(2)},
-      {tpt:'TPT A-4', ach:(Math.random() * (70 - 61) + 61).toFixed(2)},
+      {name:'TPT A-1', ach:(Math.random() * (100 - 91) + 91).toFixed(2)},
+      {name:'TPT A-2', ach:(Math.random() * (90 - 81) + 81).toFixed(2)},
+      {name:'TPT A-3', ach:(Math.random() * (80 - 71) + 71).toFixed(2)},
+      {name:'TPT A-4', ach:(Math.random() * (70 - 61) + 61).toFixed(2)},
     ]; 
     const ttrB = [      
-      {tpt:'TPT B-1', ach:(Math.random() * (100 - 91) + 91).toFixed(2)},
-      {tpt:'TPT B-2', ach:(Math.random() * (90 - 81) + 81).toFixed(2)},
-      {tpt:'TPT B-3', ach:(Math.random() * (80 - 71) + 71).toFixed(2)},
-      {tpt:'TPT B-4', ach:(Math.random() * (70 - 61) + 61).toFixed(2)},
+      {name:'TPT B-1', ach:(Math.random() * (100 - 91) + 91).toFixed(2)},
+      {name:'TPT B-2', ach:(Math.random() * (90 - 81) + 81).toFixed(2)},
+      {name:'TPT B-3', ach:(Math.random() * (80 - 71) + 71).toFixed(2)},
+      {name:'TPT B-4', ach:(Math.random() * (70 - 61) + 61).toFixed(2)},
     ];
     const ttrC = [      
-      {tpt:'TPT C-1', ach:(Math.random() * (100 - 91) + 91).toFixed(2)},
-      {tpt:'TPT C-2', ach:(Math.random() * (90 - 81) + 81).toFixed(2)},
-      {tpt:'TPT C-3', ach:(Math.random() * (80 - 71) + 71).toFixed(2)},
-      {tpt:'TPT C-4', ach:(Math.random() * (70 - 61) + 61).toFixed(2)},
+      {name:'TPT C-1', ach:(Math.random() * (100 - 91) + 91).toFixed(2)},
+      {name:'TPT C-2', ach:(Math.random() * (90 - 81) + 81).toFixed(2)},
+      {name:'TPT C-3', ach:(Math.random() * (80 - 71) + 71).toFixed(2)},
+      {name:'TPT C-4', ach:(Math.random() * (70 - 61) + 61).toFixed(2)},
     ];
 
     const gaulA = [      
-      {tpt:'TPT A-1', ach:(Math.random() * (100 - 91) + 91).toFixed(2)},
-      {tpt:'TPT A-2', ach:(Math.random() * (90 - 81) + 81).toFixed(2)},
-      {tpt:'TPT A-3', ach:(Math.random() * (80 - 71) + 71).toFixed(2)},
-      {tpt:'TPT A-4', ach:(Math.random() * (70 - 61) + 61).toFixed(2)},
+      {name:'TPT A-1', ach:(Math.random() * (100 - 91) + 91).toFixed(2)},
+      {name:'TPT A-2', ach:(Math.random() * (90 - 81) + 81).toFixed(2)},
+      {name:'TPT A-3', ach:(Math.random() * (80 - 71) + 71).toFixed(2)},
+      {name:'TPT A-4', ach:(Math.random() * (70 - 61) + 61).toFixed(2)},
     ]; 
     const gaulB = [      
-      {tpt:'TPT B-1', ach:(Math.random() * (100 - 91) + 91).toFixed(2)},
-      {tpt:'TPT B-2', ach:(Math.random() * (90 - 81) + 81).toFixed(2)},
-      {tpt:'TPT B-3', ach:(Math.random() * (80 - 71) + 71).toFixed(2)},
-      {tpt:'TPT B-4', ach:(Math.random() * (70 - 61) + 61).toFixed(2)},
+      {name:'TPT B-1', ach:(Math.random() * (100 - 91) + 91).toFixed(2)},
+      {name:'TPT B-2', ach:(Math.random() * (90 - 81) + 81).toFixed(2)},
+      {name:'TPT B-3', ach:(Math.random() * (80 - 71) + 71).toFixed(2)},
+      {name:'TPT B-4', ach:(Math.random() * (70 - 61) + 61).toFixed(2)},
     ];
     const gaulC = [      
-      {tpt:'TPT C-1', ach:(Math.random() * (100 - 91) + 91).toFixed(2)},
-      {tpt:'TPT C-2', ach:(Math.random() * (90 - 81) + 81).toFixed(2)},
-      {tpt:'TPT C-3', ach:(Math.random() * (80 - 71) + 71).toFixed(2)},
-      {tpt:'TPT C-4', ach:(Math.random() * (70 - 61) + 61).toFixed(2)},
+      {name:'TPT C-1', ach:(Math.random() * (100 - 91) + 91).toFixed(2)},
+      {name:'TPT C-2', ach:(Math.random() * (90 - 81) + 81).toFixed(2)},
+      {name:'TPT C-3', ach:(Math.random() * (80 - 71) + 71).toFixed(2)},
+      {name:'TPT C-4', ach:(Math.random() * (70 - 61) + 61).toFixed(2)},
     ];
 
     // we're going to get this data from server

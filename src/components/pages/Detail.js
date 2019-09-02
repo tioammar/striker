@@ -1,12 +1,15 @@
 import React from 'react';
 import { Component } from "react";
-import { Grid, Card, CardHeader, CardContent, withStyles, Typography, Table, Paper, TableCell, TableHead, TableRow, TableBody, Box } from "@material-ui/core";
+import { Grid, Card, CardHeader, CardContent, withStyles, Typography, Table, Paper, TableCell, TableHead, TableRow, TableBody, Box, MenuItem, Select, FormControl, InputLabel } from "@material-ui/core";
 import Helper from '../../Helper';
 import Charts from '../charts/Charts';
 
 const styles = theme => ({
   main: {
     margin: 30,
+  },
+  selector: {
+    margin: 15,
   }
 });
 
@@ -71,6 +74,10 @@ class Detail extends Component {
     month: new Date().getMonth()+1,
   }
 
+  onMonthChange = (event) => {
+    this.setState({month: event.target.value});
+  }
+
   render() {
     const dummyData = [
       {m:'Apr', ach:(Math.random() * (100 - 91) + 91).toFixed(0)},
@@ -109,17 +116,46 @@ class Detail extends Component {
       {nama:'Personil E', nik:'XXXXX', job:'Fulfillment', contact:'xxxxxx@xxx.com'}
     ];
 
+    const months = [
+      {n: 'Januari', v: 1},
+      {n: 'Februari', v: 2},
+      {n: 'Maret', v: 3},
+      {n: 'April', v: 4},
+      {n: 'Mei', v: 5},
+      {n: 'Juni', v: 6},
+      {n: 'Juli', v: 7},
+      {n: 'Agustus', v: 8},
+      {n: 'September', v: 9},
+      {n: 'Oktober', v: 10},
+      {n: 'November', v: 11},
+      {n: 'Desember', v: 12},
+    ];
+
     let i = 1;
     return (
       <div className={classes.main}>
+      <Grid container className={classes.selector}>
+        <Grid item xs={4}>
+          <FormControl>
+            <InputLabel>Bulan</InputLabel>
+            <Select 
+              value={this.state.month}
+              onChange={this.onMonthChange}>
+              {months.map(month => (
+                <MenuItem value={month.v}>{month.n}</MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Grid>
+      </Grid>
       <Grid spacing={2} container>
         <Grid item xs={8}>
           <Card>
-            <CardHeader 
+            {/* <CardHeader 
               title='Performance Monitoring'
               titleTypographyProps={{variant:'h6'}}
               subheader={'Mtd '+month+' '+this.state.year}
-              subheaderTypographyProps={{variant:'button', color:'textSecondary'}}/>
+              subheaderTypographyProps={{variant:'button', color:'textSecondary'}}/> */}
             <CardContent>
               <Table>
                 <TableHead>
@@ -156,7 +192,7 @@ class Detail extends Component {
         <Grid item xs={12}>
           <Card>
             <CardHeader
-              title='Personil TPT'/>
+              title='Personil'/>
             <CardContent>
               <Table>
                 <TableHead>
