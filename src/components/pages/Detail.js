@@ -86,9 +86,10 @@ class Detail extends Component {
     ];
 
     const datas = [
-      {title:'Sales', chart:'line', color:'#c62828', route:'/sales/', dummyData: dummyData, source:'CBD'},
       {title:'Gaul', chart:'line', color:'#1565c0', route:'/gaul/', dummyData: dummyData, source:'Nonatero'},
       {title:'TTR 3 Jam', chart:'line', color:'#2e7d32', route:'/ttr/', dummyData: dummyData, source:'Nonatero'},
+      {title:'Sales', chart:'line', color:'#c62828', route:'/sales/', dummyData: dummyData, source:'CBD'},
+      {title:'TTI', chart:'line', color:'#c62828', route:'/sales/', dummyData: dummyData, source:'CBD'},
       {title:'C3MR', chart:'line', color:'#ef6c00', route:'/c3mr/', dummyData: dummyData, source:'MyBrains'}
     ];
 
@@ -102,7 +103,6 @@ class Detail extends Component {
       {cat:'Gaul', rank:(Math.random() * (5 - 1) + 1).toFixed(0), target:10, real:(Math.random() * (15 - 5) + 5).toFixed(2)},
       {cat:'TTR 3 Jam', rank:(Math.random() * (5 - 1) + 1).toFixed(0), target:85, real:(Math.random() * (100 - 60) + 60).toFixed(2)},
       {cat:'C3MR', rank:(Math.random() * (5 - 1) + 1).toFixed(0), target:97.5, real:(Math.random() * (105 - 90) + 90).toFixed(2)}
-
     ];
 
     const personil = [
@@ -129,7 +129,7 @@ class Detail extends Component {
       </Grid>
       <Grid spacing={2} container>
         {datas.map(data => (
-        <Grid item xs={6}>
+        <Grid item xs={4}>
           <Charts 
             title={data.title} 
             data={data.dummyData} 

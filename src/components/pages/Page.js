@@ -30,7 +30,7 @@ class Page extends Component {
 
   state = {
     year: 2019,
-    month: 8,
+    month: new Date().getMonth()+1,
     class: 'A',
   }
 
@@ -67,6 +67,10 @@ class Page extends Component {
       case 'c3mr':
         title = 'C3MR';
         unit = 'Payment Collection & Finance Treg VII';
+        break;
+      case 'tti':
+        title = 'TTI';
+        unit = 'Regional Operation Center Treg VII';
         break;
       default:
         title = '';

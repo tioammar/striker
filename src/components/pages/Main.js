@@ -18,7 +18,7 @@ const THead = withStyles(theme => ({
   head: {
     backgroundColor: theme.palette.common.black,
     color: theme.palette.common.white,
-    fontSize: 15,
+    fontSize: 14,
   }
 }))(TableCell);
 
@@ -27,7 +27,7 @@ class Main extends Component {
   state = {
     year: 2019,
     class: 'A',
-    month: 8,
+    month: new Date().getMonth()+1,
   }
 
   onClassChange = (event) => {
@@ -189,9 +189,10 @@ class Main extends Component {
     }
 
     const datas = [
-      {title:'Sales', chart: 'bar', color:'#c62828', route:'/perf/sales', dummyData: sales, source:'CBD'},
       {title:'Gangguan Ulang', chart: 'bar', color:'#1565c0', route:'/perf/gaul', dummyData: gaul, source:'Nonatero'},
       {title:'TTR 3 Jam', chart: 'bar', color:'#2e7d32', route:'/perf/ttr', dummyData: ttr, source:'Nonatero'},
+      {title:'Sales', chart: 'bar', color:'#c62828', route:'/perf/sales', dummyData: sales, source:'CBD'},
+      {title:'TTI', chart: 'bar', color:'#607d8b', route:'/perf/tti', dummyData: ttr, source:'Nonatero'},
       {title:'C3MR', chart: 'bar', color:'#ef6c00', route:'/perf/c3mr', dummyData: c3mr, source:'MyBrains'}
     ];
 
@@ -212,13 +213,13 @@ class Main extends Component {
         </Grid>
       </Grid>
       <Grid spacing={2} container>
-      <Grid item xs={6}>
+      <Grid item xs={5}>
         <Card>
           <CardHeader 
             title="Top 3 Datel/Ubis" 
             titleTypographyProps={{variant:'h6'}}
             subheader={'Mtd '+month+' '+this.state.year}
-            subheaderTypographyProps={{variant:'buttom', color:'textSecondary'}}/>
+            subheaderTypographyProps={{variant:'button', color:'textSecondary'}}/>
           <CardContent>        
             <Table className={classes.table}>
             {/*   // Order: TPT | Witel | Datel | Kelas | Skor  */}
@@ -239,13 +240,13 @@ class Main extends Component {
           </CardContent>
         </Card>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={7}>
         <Card>
           <CardHeader 
             title="Top 3 TPT" 
             titleTypographyProps={{variant:'h6'}}
             subheader={'Mtd '+month+' '+this.state.year}
-            subheaderTypographyProps={{variant:'buttom', color:'textSecondary'}}/>
+            subheaderTypographyProps={{variant:'button', color:'textSecondary'}}/>
           <CardContent>        
             <Table className={classes.table}>
             {/*   // Order: TPT | Witel | Datel | Kelas | Skor  */}
@@ -277,7 +278,8 @@ class Main extends Component {
             chart={data.chart}
             color={data.color} 
             link={data.route}
-            source={data.source}/>
+            source={data.source}
+            class={this.state.class}/>
         </Grid>
       ))}
       </Grid>
