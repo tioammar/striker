@@ -5,7 +5,6 @@ import Dashboard from './components/Dashboard';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Page from './components/pages/Page';
 import Detail from './components/pages/Detail';
-import { Paper } from '@material-ui/core';
 import { withStyles } from '@material-ui/styles';
 
 const styles = theme => ({
@@ -20,7 +19,6 @@ const styles = theme => ({
 class App extends Component {
 
   render() {
-    const {classes} = this.props;
 
     return (
       <div>

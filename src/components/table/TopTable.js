@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { TableRow, TableCell, withStyles } from "@material-ui/core";
+import React from "react";
+import { TableRow, TableCell } from "@material-ui/core";
 
 function TopTable(props) {
 

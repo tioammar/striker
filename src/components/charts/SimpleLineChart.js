@@ -1,5 +1,6 @@
 import React from 'react';
-import { ResponsiveContainer, AreaChart, Area, BarChart, Bar, LineChart, XAxis, YAxis,Tooltip, Line } from 'recharts';
+import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis,Tooltip } from 'recharts';
+// import { ResponsiveContainer, LineChart, XAxis, YAxis,Tooltip, Line } from 'recharts';
 import { Paper, Typography, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 

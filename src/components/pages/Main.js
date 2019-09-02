@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withStyles, Grid, Card, CardHeader, CardContent, Table, TableHead, TableRow, TableCell, TableBody, Typography } from "@material-ui/core";
+import { withStyles, Grid, Card, CardHeader, CardContent, Table, TableHead, TableRow, TableCell, TableBody } from "@material-ui/core";
 import Charts from '../charts/Charts';
 import Selector from '../Selector';
 import TopTable from '../table/TopTable';

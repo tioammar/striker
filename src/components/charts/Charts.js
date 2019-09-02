@@ -15,8 +15,7 @@ function Charts(props){
   const classes = styles();
 
   function isBarChart(){
-    if(props.chart == 'bar') return true;
-    else return false;
+    return props.chart === 'bar';
   }
 
   return (

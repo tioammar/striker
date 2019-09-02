@@ -1,7 +1,6 @@
 import React from 'react';
 import { Component } from "react";
-import { Grid, Card, CardHeader, CardContent, withStyles, Typography, Table, Paper, TableCell, TableHead, TableRow, TableBody, Box, MenuItem, Select, FormControl, InputLabel } from "@material-ui/core";
-import Helper from '../../Helper';
+import { Grid, Card, CardHeader, CardContent, withStyles, Table, TableCell, TableHead, TableRow, TableBody, MenuItem, Select, FormControl, InputLabel } from "@material-ui/core";
 import Charts from '../charts/Charts';
 
 const styles = theme => ({
@@ -45,7 +44,7 @@ function PerfTable(props){
   }
 
   function isWinning(){
-    return data.rank == 1;
+    return data.rank === 1;
   }
 
   function isAchieve(){
@@ -94,9 +93,6 @@ class Detail extends Component {
       {title:'TTI', chart:'line', color:'#607d8b', route:'/sales/', dummyData: dummyData, source:'CBD'},
       {title:'C3MR', chart:'line', color:'#ef6c00', route:'/c3mr/', dummyData: dummyData, source:'MyBrains'}
     ];
-
-    let helper = new Helper();
-    const month = helper.getMonth(this.state.month);
 
     const {classes} = this.props;
 
@@ -151,11 +147,6 @@ class Detail extends Component {
       <Grid spacing={2} container>
         <Grid item xs={8}>
           <Card>
-            {/* <CardHeader 
-              title='Performance Monitoring'
-              titleTypographyProps={{variant:'h6'}}
-              subheader={'Mtd '+month+' '+this.state.year}
-              subheaderTypographyProps={{variant:'button', color:'textSecondary'}}/> */}
             <CardContent>
               <Table>
                 <TableHead>
@@ -187,12 +178,22 @@ class Detail extends Component {
             source={data.source}/>
         </Grid>
         ))}
+        <Grid item xs={4}>
+          <Card>
+            <CardHeader 
+              title='Network Reporting'
+              titleTypographyProps={{variant: 'h6'}}
+              subheader='Source: Regional Network Operation Treg VII'
+              subheaderTypographyProps={{variant:'caption', color:'textSecondary'}}/>
+          </Card>
+        </Grid>
       </Grid>
       <Grid spacing={2} container>
         <Grid item xs={12}>
           <Card>
             <CardHeader
-              title='Personil'/>
+              title='Personil'
+              titleTypographyProps={{variant: 'h6'}}/>
             <CardContent>
               <Table>
                 <TableHead>
