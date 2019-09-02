@@ -10,9 +10,7 @@ function TopTable(props) {
   }
 
   function isAchieve(){
-    if(data.score >= 100){
-      return true;
-    } else return false;
+    return data.score >= 100;
   }
 
   // TPT | Witel | Datel | Kelas | Skor

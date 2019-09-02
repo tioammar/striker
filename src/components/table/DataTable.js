@@ -15,15 +15,11 @@ function DataTable(props) {
   }
 
   function isGrowth(){
-    if(data.growth > 0){
-      return true;
-    } else return false;
+    return data.growth > 0;
   }
 
   function isAchieve(){
-    if(getAchievement() > 100){
-      return true;
-    } else return false;
+    return getAchievement() >= 100;
   }
 
   return (
