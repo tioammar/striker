@@ -18,7 +18,6 @@ function TopTable(props) {
     <TableRow>
       <TableCell>{data.i}.</TableCell>
       <TableCell>{data.name}</TableCell>
-      {isUbis() ? '' : <TableCell align='right'>{data.datel}</TableCell>}
       <TableCell align='right'>{data.witel}</TableCell>
       {isUbis() ? '' : <TableCell align='right'>{data.class}</TableCell>}
       {isAchieve() ? 

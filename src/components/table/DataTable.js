@@ -10,10 +10,6 @@ function DataTable(props) {
     return ((data.real / data.target) * 100).toFixed(2);
   }
 
-  function isUbis(){
-    return props.isUbis;
-  }
-
   function isGrowth(){
     return data.growth > 0;
   }
@@ -26,10 +22,7 @@ function DataTable(props) {
     <TableRow>
       <TableCell>{index}.</TableCell>
       <TableCell>{data.name}</TableCell>
-      <TableCell>Datel X</TableCell>
-      {isUbis() ? 
-      '' :
-      <TableCell>Witel X</TableCell>}
+      <TableCell>Witel X</TableCell>
       <TableCell align='right'>{data.target}</TableCell>
       <TableCell align='right'>{data.real}</TableCell>
       {isAchieve() ? 

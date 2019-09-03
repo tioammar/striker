@@ -44,7 +44,7 @@ function PerfTable(props){
   }
 
   function isWinning(){
-    return data.rank === 1;
+    return Number(data.rank) === 1;
   }
 
   function isAchieve(){

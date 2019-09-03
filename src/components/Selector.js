@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid, MenuItem, Select, FormControl, InputLabel } from "@material-ui/core";
 
 function Selector(props){
+
   const months = [
     {n: 'Januari', v: 1},
     {n: 'Februari', v: 2},
@@ -16,6 +17,7 @@ function Selector(props){
     {n: 'November', v: 11},
     {n: 'Desember', v: 12},
   ];
+  const classSelection = props.selection;
 
   return (
     <Grid container>
@@ -25,9 +27,9 @@ function Selector(props){
           <Select 
             value={props.state.class}
             onChange={props.onClassChange}>
-            <MenuItem value='A'>Kelas A</MenuItem>
-            <MenuItem value='B'>Kelas B</MenuItem>
-            <MenuItem value='C'>Kelas C</MenuItem>
+            {classSelection.map(item => (
+              <MenuItem value={item.v}>{item.n}</MenuItem>
+            ))}
           </Select>
         </FormControl>
       </Grid>

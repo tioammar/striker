@@ -119,6 +119,13 @@ class Page extends Component {
     }
     let i = 1;
 
+    const classSelection = [
+      {n:'Kelas A', v:'A'},
+      {n:'Kelas B', v:'B'},
+      {n:'Kelas C', v:'C'},
+      {n:'Datel/Ubis', v:'D'}
+    ];
+
     return (
       <div>
       <Paper className={classes.paper}>
@@ -128,10 +135,12 @@ class Page extends Component {
           <Typography variant='body2' color='textSecondary'>{unit}</Typography>
         </Grid>  
         <Grid item xs={4}>
-          <Selector state={this.state} 
+          <Selector 
+              state={this.state} 
               onClassChange={this.onClassChange}
               onMonthChange={this.onMonthChange}
-              onYearChange={this.onYearChange}/>
+              onYearChange={this.onYearChange}
+              selection={classSelection}/>
         </Grid>
       </Grid>
       <Grid container xs={12}>
@@ -141,7 +150,6 @@ class Page extends Component {
             <TableRow>
               <THead>No.</THead>
               <THead>TPT</THead>
-              <THead>Datel</THead>
               <THead>Witel</THead>
               <THead align='right'>Target</THead>
               <THead align='right'>Realisasi</THead>

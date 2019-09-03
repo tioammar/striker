@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Page from './components/pages/Page';
 import Detail from './components/pages/Detail';
 import { withStyles } from '@material-ui/styles';
+import Territory from './components/pages/Territory';
 
 const styles = theme => ({
   paper: {
@@ -31,8 +32,9 @@ class App extends Component {
           unit='BPP'
         />
         <Route path='/' exact component={Dashboard}/>
-        <Route path='/korter' component={Detail}/>
+        <Route path='/detail' component={Detail}/>
         <Route path='/perf/:type' component={Page}/>
+        <Route path='/teritori' component={Territory}/>
         {/* for setting param just add /:param. 
         and get param on component by using props.match.params.param */}
       </Router>

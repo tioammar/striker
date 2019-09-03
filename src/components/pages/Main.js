@@ -132,21 +132,21 @@ class Main extends Component {
     let gaul = [];
 
     const scoresA = [
-      {i: 1, name:'TPT 1', witel:'Witel A', datel:'Datel A', class:'A', score:(Math.random() * (105 - 101) + 101).toFixed(2)},
-      {i: 2, name:'TPT 2', witel:'Witel B', datel:'Datel B', class:'A', score:(Math.random() * (100 - 96) + 96).toFixed(2)},
-      {i: 3, name:'TPT 3', witel:'Witel C', datel:'Datel C', class:'A', score:(Math.random() * (95 - 91) + 91).toFixed(2)},
+      {i: 1, name:'TPT 1', witel:'Witel A', class:'A', score:(Math.random() * (105 - 101) + 101).toFixed(2)},
+      {i: 2, name:'TPT 2', witel:'Witel B', class:'A', score:(Math.random() * (100 - 96) + 96).toFixed(2)},
+      {i: 3, name:'TPT 3', witel:'Witel C', class:'A', score:(Math.random() * (95 - 91) + 91).toFixed(2)},
     ];
 
     const scoresB = [
-      {i: 1, name:'TPT 1', witel:'Witel A', datel:'Datel A', class:'B', score:(Math.random() * (105 - 101) + 101).toFixed(2)},
-      {i: 2, name:'TPT 2', witel:'Witel B', datel:'Datel B', class:'B', score:(Math.random() * (100 - 96) + 96).toFixed(2)},
-      {i: 3, name:'TPT 3', witel:'Witel C', datel:'Datel C', class:'B', score:(Math.random() * (95 - 91) + 91).toFixed(2)},
+      {i: 1, name:'TPT 1', witel:'Witel A', class:'B', score:(Math.random() * (105 - 101) + 101).toFixed(2)},
+      {i: 2, name:'TPT 2', witel:'Witel B', class:'B', score:(Math.random() * (100 - 96) + 96).toFixed(2)},
+      {i: 3, name:'TPT 3', witel:'Witel C', class:'B', score:(Math.random() * (95 - 91) + 91).toFixed(2)},
     ];
 
     const scoresC = [
-      {i: 1, name: 'TPT 1', witel:'Witel A', datel:'Datel A', class:'C', score:(Math.random() * (105 - 101) + 101).toFixed(2)},
-      {i: 2, name: 'TPT 2', witel:'Witel B', datel:'Datel B', class:'C', score:(Math.random() * (100 - 96) + 96).toFixed(2)},
-      {i: 3, name: 'TPT 3', witel:'Witel C', datel:'Datel C', class:'C', score:(Math.random() * (95 - 91) + 91).toFixed(2)},
+      {i: 1, name: 'TPT 1', witel:'Witel A', class:'C', score:(Math.random() * (105 - 101) + 101).toFixed(2)},
+      {i: 2, name: 'TPT 2', witel:'Witel B', class:'C', score:(Math.random() * (100 - 96) + 96).toFixed(2)},
+      {i: 3, name: 'TPT 3', witel:'Witel C', class:'C', score:(Math.random() * (95 - 91) + 91).toFixed(2)},
     ];
 
     const scoresUbis = [
@@ -186,7 +186,13 @@ class Main extends Component {
         gaul = gaulA;
         scores = scoresA;
         break;
-    }
+    };
+
+    const classSelection = [
+      {n:'Kelas A', v:'A'},
+      {n:'Kelas B', v:'B'},
+      {n:'Kelas C', v:'C'}
+    ];
 
     const datas = [
       {title:'Gangguan Ulang', chart: 'bar', color:'#1565c0', route:'/perf/gaul', dummyData: gaul, source:'Nonatero'},
@@ -206,70 +212,71 @@ class Main extends Component {
           {/* <Typography variant='h4'>Dashboard</Typography> */}
         </Grid>
         <Grid item xs={4}>
-          <Selector state={this.state} 
+          <Selector 
+            state={this.state} 
             onClassChange={this.onClassChange}
             onMonthChange={this.onMonthChange}
-            onYearChange={this.onYearChange}/>
+            onYearChange={this.onYearChange}
+            selection={classSelection}/>
         </Grid>
       </Grid>
       <Grid spacing={2} container>
-      <Grid item xs={5}>
-        <Card>
-          <CardHeader 
-            title="Top 3 Datel/Ubis" 
-            titleTypographyProps={{variant:'h6'}}
-            subheader={'Mtd '+month+' '+this.state.year}
-            subheaderTypographyProps={{variant:'button', color:'textSecondary'}}/>
-          <CardContent>        
-            <Table className={classes.table}>
-            {/*   // Order: TPT | Witel | Datel | Kelas | Skor  */}
-              <TableHead>
-                <TableRow>
-                  <THead>No. </THead>
-                  <THead>Datel/Ubis</THead>
-                  <THead align='right'>Witel</THead>
-                  <THead align='right'>Skor</THead>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {scoresUbis.map(score => (
-                  <TopTable data={score} isUbis={true}/>
-                ))}
-              </TableBody>
-            </Table>
-          </CardContent>
-        </Card>
-      </Grid>
-      <Grid item xs={7}>
-        <Card>
-          <CardHeader 
-            title="Top 3 TPT" 
-            titleTypographyProps={{variant:'h6'}}
-            subheader={'Mtd '+month+' '+this.state.year}
-            subheaderTypographyProps={{variant:'button', color:'textSecondary'}}/>
-          <CardContent>        
-            <Table className={classes.table}>
-            {/*   // Order: TPT | Witel | Datel | Kelas | Skor  */}
-              <TableHead>
-                <TableRow>
-                  <THead>No. </THead>
-                  <THead>TPT</THead>
-                  <THead align='right'>Datel</THead>
-                  <THead align='right'>Witel</THead>
-                  <THead align='right'>Kelas</THead>
-                  <THead align='right'>Skor</THead>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {scores.map(score => (
-                  <TopTable data={score} isUbis={false}/>
-                ))}
-              </TableBody>
-            </Table>
-          </CardContent>
-        </Card>
-      </Grid>
-      {datas.map(data => (
+        <Grid item xs={5}>
+          <Card>
+            <CardHeader 
+              title="Top 3 Datel/Ubis" 
+              titleTypographyProps={{variant:'h6'}}
+              subheader={'Mtd '+month+' '+this.state.year}
+              subheaderTypographyProps={{variant:'button', color:'textSecondary'}}/>
+            <CardContent>        
+              <Table className={classes.table}>
+              {/*   // Order: TPT | Witel | Datel | Kelas | Skor  */}
+                <TableHead>
+                  <TableRow>
+                    <THead>No. </THead>
+                    <THead>Datel/Ubis</THead>
+                    <THead align='right'>Witel</THead>
+                    <THead align='right'>Skor</THead>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {scoresUbis.map(score => (
+                    <TopTable data={score} isUbis={true}/>
+                  ))}
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={7}>
+          <Card>
+            <CardHeader 
+              title="Top 3 TPT" 
+              titleTypographyProps={{variant:'h6'}}
+              subheader={'Mtd '+month+' '+this.state.year}
+              subheaderTypographyProps={{variant:'button', color:'textSecondary'}}/>
+            <CardContent>        
+              <Table className={classes.table}>
+              {/*   // Order: TPT | Witel | Datel | Kelas | Skor  */}
+                <TableHead>
+                  <TableRow>
+                    <THead>No. </THead>
+                    <THead>TPT</THead>
+                    <THead align='right'>Witel</THead>
+                    <THead align='right'>Kelas</THead>
+                    <THead align='right'>Skor</THead>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {scores.map(score => (
+                    <TopTable data={score} isUbis={false}/>
+                  ))}
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
+        </Grid>
+        {datas.map(data => (
         <Grid item xs={4}>
           {/* next we will generate every data on chart */}
           <Charts 
@@ -281,7 +288,16 @@ class Main extends Component {
             source={data.source}
             class={this.state.class}/>
         </Grid>
-      ))}
+        ))}
+        <Grid item xs={4}>
+          <Card>
+            <CardHeader 
+              title='Network Reporting'
+              titleTypographyProps={{variant: 'h6'}}
+              subheader='Source: Regional Network Operation Treg VII'
+              subheaderTypographyProps={{variant:'caption', color:'textSecondary'}}/>
+          </Card>
+        </Grid>
       </Grid>
       </div>
     )
