@@ -20,7 +20,6 @@ const styles = theme => ({
 class App extends Component {
 
   render() {
-
     return (
       <div>
       <Router>
@@ -34,7 +33,7 @@ class App extends Component {
         <Route path='/' exact component={Dashboard}/>
         <Route path='/detail' component={Detail}/>
         <Route path='/perf/:type' component={Page}/>
-        <Route path='/teritori' component={Territory}/>
+        <Route path='/territory' component={Territory}/>
         {/* for setting param just add /:param. 
         and get param on component by using props.match.params.param */}
       </Router>

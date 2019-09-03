@@ -10,14 +10,6 @@ function DataTable(props) {
     return ((data.real / data.target) * 100).toFixed(2);
   }
 
-  function isGrowth(){
-    return data.growth > 0;
-  }
-
-  function isAchieve(){
-    return getAchievement() >= 100;
-  }
-
   return (
     <TableRow>
       <TableCell>{index}.</TableCell>
@@ -25,10 +17,10 @@ function DataTable(props) {
       <TableCell>Witel X</TableCell>
       <TableCell align='right'>{data.target}</TableCell>
       <TableCell align='right'>{data.real}</TableCell>
-      {isAchieve() ? 
+      {getAchievement() >= 100 ? 
         <TableCell align='right' style={{color: '#2e7d32'}}>{getAchievement()} %</TableCell> : 
         <TableCell align='right' style={{color: '#c62828'}}>{getAchievement()} %</TableCell>}
-      {isGrowth() ? 
+      {data.growth > 0 ? 
         <TableCell align='right' style={{color: '#2e7d32'}}>{data.growth} %</TableCell> : 
         <TableCell align='right' style={{color: '#c62828'}}>{data.growth} %</TableCell>}
     </TableRow>

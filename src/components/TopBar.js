@@ -110,7 +110,7 @@ class TopBar extends Component {
                   <ListItemText primary='Dashboard'/>
                 </ListItem>
                 </Link>
-                <Link to='/territory/' className={classes.link}>
+                <Link to='/territory' className={classes.link}>
                 <ListItem button key='territory' onClick={this.closeDrawer}>
                   <ListItemIcon><ListIcon /></ListItemIcon>
                   <ListItemText primary='Daftar Wilayah'/>

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { TableRow, TableCell, makeStyles } from "@material-ui/core";
 import { Link } from 'react-router-dom';
 
@@ -27,4 +27,4 @@ function UbisTable(props) {
     )
 }
 
-export default TptTable;
+export default UbisTable;
