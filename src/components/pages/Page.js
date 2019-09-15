@@ -1,6 +1,6 @@
 import React from 'react';
 import { Component } from "react";
-import { Typography, Grid, withStyles, Table, TableHead, TableRow, TableCell, TableBody, Paper } from "@material-ui/core";
+import { Typography, Grid, withStyles, Table, TableHead, TableRow, TableCell, TableBody, Paper, LinearProgress } from "@material-ui/core";
 import Selector from '../Selector';
 import DataTable from '../table/DataTable';
 
@@ -31,13 +31,12 @@ class Page extends Component {
   state = {
     year: 2019,
     month: new Date().getMonth()+1,
-    class: 'A',
-    data: null,
+    class: "D",
+    data: [],
+    isError: false,
     isLoading: false,
     title: "",
     unit: "",
-    querytpt: "",
-    queryubis: "",
   };
 
   componentDidMount(){
@@ -46,116 +45,86 @@ class Page extends Component {
         this.setState({
           title: "Sales",
           unit: "Consumer Service Treg VII",
-          querytpt: "http://localhost:8080/salestpt",
-          queryubis: "http://localhost:8080/salesubis"
         });
         break;
       case 'ttr':
         this.setState({
           title: "TTR 3 Jam",
           unit: "Regional Operation Center Treg VII",
-          querytpt: "http://localhost:8080/ttrtpt",
-          queryubis: "http://localhost:8080/ttrubis"
         });
         break;
       case 'gaul':
         this.setState({
           title: "Gangguan Ulang",
           unit: "Regional Operation Center Treg VII",
-          querytpt: "http://localhost:8080/gaultpt",
-          queryubis: "http://localhost:8080/gaulubis"
         });
         break;
       case 'c3mr':
         this.setState({
           title: "C3MR",
           unit: "Payment Collection & Finance Treg VII",
-          querytpt: "http://localhost:8080/c3mrtpt",
-          queryubis: "http://localhost:8080/c3mrubis"
         });
         break;
       case 'tti':
         this.setState({
           title: "TTI",
           unit: "Regional Operation Center Treg VII",
-          querytpt: "http://localhost:8080/ttitpt",
-          queryubis: "http://localhost:8080/ttiubis"
         });
         break;
       default:
         this.setState({
           title: "Sales",
           unit: "Consumer Service Treg VII",
-          querytpt: "http://localhost:8080/salestpt",
-          queryubis: "http://localhost:8080/salesubis"
         });
         break;
-        break;
     }
+    this.getData(this.state.class, this.state.month);
   }
 
   onClassChange = (event) => {
     this.setState({class: event.target.value});
-    // this.getData;
+    this.getData(event.target.value, this.state.month);
   }
 
   onMonthChange = (event) => {
     this.setState({month: event.target.value});
+    this.getData(this.state.class, event.target.value)
   }
 
   onYearChange = (event) => {
     this.setState({year: event.target.value});
   }
 
-  getData() {
-    // todo
+  getData(cls, bln) {
+    this.setState({isLoading: true});
+    let query = "";
+    cls !== 'D' ? 
+      query = "http://localhost:8080/"+this.props.match.params.type+"tpt?cls="+cls+"&bln="+bln : 
+      query = "http://localhost:8080/"+this.props.match.params.type+"ubis?bln="+bln;
+    
+    fetch(query)
+      .then(response => {
+        if(response.ok) return response.json();
+        else throw Error(response.statusText);
+      })
+      .then(json => {
+        this.setState({
+          data: json.data,
+          isLoading: false,
+          isError: false,
+        });
+      })
+      .catch(error => {
+        this.setState({
+          data: [],
+          isLoading: false,
+          isError: true,
+        });
+      });
   }
 
   render() {
     const {classes} = this.props;
-    let title = '';
-    let unit = '';
-
-    const datasA = [
-      {name: 'TPT A-1', target: 100, real: 110, growth: +15},
-      {name: 'TPT A-2', target: 100, real: 103, growth: +14},
-      {name: 'TPT A-3', target: 100, real: 82, growth: -17},
-      {name: 'TPT A-4', target: 100, real: 69, growth: +18},
-      {name: 'TPT A-5', target: 100, real: 51, growth: -13},
-    ];
-
-    const datasB = [
-      {name: 'TPT B-1', target: 100, real: 102, growth: +15},
-      {name: 'TPT B-2', target: 100, real: 101, growth: +14},
-      {name: 'TPT B-3', target: 100, real: 82.3, growth: -17},
-      {name: 'TPT B-4', target: 100, real: 79.7, growth: +18},
-      {name: 'TPT B-5', target: 100, real: 51.7, growth: -13},
-    ];
-
-    const datasC = [
-      {name: 'TPT C-1', target: 100, real: 100.1, growth: +15},
-      {name: 'TPT C-2', target: 100, real: 99.5, growth: +14},
-      {name: 'TPT C-3', target: 100, real: 85.7, growth: -17},
-      {name: 'TPT C-4', target: 100, real: 84.1, growth: +18},
-      {name: 'TPT C-5', target: 100, real: 50.6, growth: -13},
-    ];
-
-    let datas = [];
-
-    switch(this.state.class){
-      case 'A':
-        datas = datasA;
-        break;
-      case 'B':
-        datas = datasB;
-        break;
-      case 'C':
-        datas = datasC;
-        break;
-      default:
-        datas = datasA;
-    }
-    let i = 1;
 
     const classSelection = [
       {n:'Kelas A', v:'A'},
@@ -195,17 +164,29 @@ class Page extends Component {
               <THead align='right'>Growth</THead>
             </TableRow>
           </TableHead>
-          <TableBody>
-            {datas.map(data => (
-              <DataTable index={i++} data={data} isUbis={false}/>
-            ))}
-          </TableBody>
+          {this.state.isLoading ? 
+            <LinearProgress className={classes.table}/> :
+            <ErrorCatch error={this.state.isError} data={this.state.data}/>
+          }
         </Table>
       </Grid>
       </Paper>
       </div>
     )
   }
+}
+
+function ErrorCatch(props){
+  let i = 1;
+  return (
+    <TableBody>
+    {props.error ? 
+      <Typography>Data Belum Tersedia</Typography> :
+      props.data.map(data => (
+        <DataTable index={i++} data={data}/>
+      ))}
+    </TableBody>
+  )
 }
 
 export default withStyles(styles)(Page);
