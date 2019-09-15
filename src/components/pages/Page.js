@@ -32,10 +32,71 @@ class Page extends Component {
     year: 2019,
     month: new Date().getMonth()+1,
     class: 'A',
+    data: null,
+    isLoading: false,
+    title: "",
+    unit: "",
+    querytpt: "",
+    queryubis: "",
+  };
+
+  componentDidMount(){
+    switch(this.props.match.params.type){
+      case 'sales':
+        this.setState({
+          title: "Sales",
+          unit: "Consumer Service Treg VII",
+          querytpt: "http://localhost:8080/salestpt",
+          queryubis: "http://localhost:8080/salesubis"
+        });
+        break;
+      case 'ttr':
+        this.setState({
+          title: "TTR 3 Jam",
+          unit: "Regional Operation Center Treg VII",
+          querytpt: "http://localhost:8080/ttrtpt",
+          queryubis: "http://localhost:8080/ttrubis"
+        });
+        break;
+      case 'gaul':
+        this.setState({
+          title: "Gangguan Ulang",
+          unit: "Regional Operation Center Treg VII",
+          querytpt: "http://localhost:8080/gaultpt",
+          queryubis: "http://localhost:8080/gaulubis"
+        });
+        break;
+      case 'c3mr':
+        this.setState({
+          title: "C3MR",
+          unit: "Payment Collection & Finance Treg VII",
+          querytpt: "http://localhost:8080/c3mrtpt",
+          queryubis: "http://localhost:8080/c3mrubis"
+        });
+        break;
+      case 'tti':
+        this.setState({
+          title: "TTI",
+          unit: "Regional Operation Center Treg VII",
+          querytpt: "http://localhost:8080/ttitpt",
+          queryubis: "http://localhost:8080/ttiubis"
+        });
+        break;
+      default:
+        this.setState({
+          title: "Sales",
+          unit: "Consumer Service Treg VII",
+          querytpt: "http://localhost:8080/salestpt",
+          queryubis: "http://localhost:8080/salesubis"
+        });
+        break;
+        break;
+    }
   }
 
   onClassChange = (event) => {
     this.setState({class: event.target.value});
+    // this.getData;
   }
 
   onMonthChange = (event) => {
@@ -46,37 +107,14 @@ class Page extends Component {
     this.setState({year: event.target.value});
   }
 
+  getData() {
+    // todo
+  }
+
   render() {
     const {classes} = this.props;
     let title = '';
     let unit = '';
-
-    switch(this.props.match.params.type){
-      case 'sales':
-        title = 'Sales';
-        unit = 'Consumer Service Regional Treg VII';
-        break;
-      case 'ttr':
-        title = 'TTR 3 Jam';
-        unit = 'Regional Operation Center Treg VII';
-        break;
-      case 'gaul':
-        title = 'Gangguan Ulang';
-        unit = 'Regional Operation Center Treg VII';
-        break;
-      case 'c3mr':
-        title = 'C3MR';
-        unit = 'Payment Collection & Finance Treg VII';
-        break;
-      case 'tti':
-        title = 'TTI';
-        unit = 'Regional Operation Center Treg VII';
-        break;
-      default:
-        title = '';
-        unit = '';
-        break;
-    }
 
     const datasA = [
       {name: 'TPT A-1', target: 100, real: 110, growth: +15},
@@ -131,8 +169,8 @@ class Page extends Component {
       <Paper className={classes.paper}>
       <Grid container xs={12}>
         <Grid item xs={8}>
-          <Typography variant='h5'>{title}</Typography>
-          <Typography variant='body2' color='textSecondary'>{unit}</Typography>
+          <Typography variant='h5'>{this.state.title}</Typography>
+          <Typography variant='body2' color='textSecondary'>{this.state.unit}</Typography>
         </Grid>  
         <Grid item xs={4}>
           <Selector 
@@ -149,7 +187,7 @@ class Page extends Component {
           <TableHead>
             <TableRow>
               <THead>No.</THead>
-              <THead>TPT</THead>
+              <THead>Nama</THead>
               <THead>Witel</THead>
               <THead align='right'>Target</THead>
               <THead align='right'>Realisasi</THead>
