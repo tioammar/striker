@@ -20,15 +20,15 @@ function DataTable(props) {
     <TableRow>
       <TBody>{index}.</TBody>
       <TBody>{data.location}</TBody>
-      <TBody>{data.witel}</TBody>
+      {/* <TBody>{data.witel}</TBody> */}
       <TBody align='right'>{data.currentTarget}</TBody>
       <TBody align='right'>{data.currentMonth}</TBody>
       {data.achievement >= 100 ? 
-        <TBody align='right' style={{color: '#2e7d32'}}>{(data.achievement * 1).toFixed(2)} %</TBody> : 
-        <TBody align='right' style={{color: '#c62828'}}>{(data.achievement * 1).toFixed(2)} %</TBody>}
+        <TBody align='right' style={{color: '#2e7d32'}}>{(data.achievement * 1).toFixed(2)}%</TBody> : 
+        <TBody align='right' style={{color: '#c62828'}}>{(data.achievement * 1).toFixed(2)}%</TBody>}
       {getGrowth() > 0 ? 
-        <TBody align='right' style={{color: '#2e7d32'}}>{getGrowth()} %</TBody> : 
-        <TBody align='right' style={{color: '#c62828'}}>{getGrowth()} %</TBody>}
+        <TBody align='right' style={{color: '#2e7d32'}}>{getGrowth()}%</TBody> : 
+        <TBody align='right' style={{color: '#c62828'}}>{getGrowth()}%</TBody>}
     </TableRow>
   )
 }

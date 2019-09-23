@@ -8,6 +8,10 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import ListIcon from '@material-ui/icons/List';
+import BuildIcon from '@material-ui/icons/Build';
+import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
+import LoopIcon from '@material-ui/icons/Loop';
+import QueuePlayNextIcon from '@material-ui/icons/QueuePlayNext';
 import { Link } from 'react-router-dom';
 
 const styles = theme => ({
@@ -114,6 +118,31 @@ class TopBar extends Component {
                 <ListItem button key='territory' onClick={this.closeDrawer}>
                   <ListItemIcon><ListIcon /></ListItemIcon>
                   <ListItemText primary='Daftar Wilayah'/>
+                </ListItem>
+                </Link>
+                <Divider />
+                <Link to='/perf/ttr' className={classes.link}>
+                <ListItem button key='territory' onClick={this.closeDrawer}>
+                  <ListItemIcon><BuildIcon /></ListItemIcon>
+                  <ListItemText primary='TTR 3 Jam'/>
+                </ListItem>
+                </Link>
+                <Link to='/perf/gaul' className={classes.link}>
+                <ListItem button key='territory' onClick={this.closeDrawer}>
+                  <ListItemIcon><LoopIcon /></ListItemIcon>
+                  <ListItemText primary='Gangguan Ulang'/>
+                </ListItem>
+                </Link>
+                <Link to='/perf/sales' className={classes.link}>
+                <ListItem button key='territory' onClick={this.closeDrawer}>
+                  <ListItemIcon><QueuePlayNextIcon /></ListItemIcon>
+                  <ListItemText primary='Sales'/>
+                </ListItem>
+                </Link>
+                <Link to='/perf/c3mr' className={classes.link}>
+                <ListItem button key='territory' onClick={this.closeDrawer}>
+                  <ListItemIcon><AccountBalanceWalletIcon /></ListItemIcon>
+                  <ListItemText primary='C3MR'/>
                 </ListItem>
                 </Link>
                 <Divider />

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Component } from "react";
-import { Typography, Grid, withStyles, Table, TableHead, TableRow, TableCell, TableBody, Paper, LinearProgress, Button } from "@material-ui/core";
+import { Typography, Grid, withStyles, Table, TableHead, TableRow, TableCell, TableBody, Paper, LinearProgress, Button, Chip } from "@material-ui/core";
 import Selector from '../Selector';
 import DataTable from '../table/DataTable';
 
@@ -19,6 +19,19 @@ const styles = theme => ({
     marginTop: 20,
     width: '100%',
     overflowX: 'auto'
+  },
+  progress: {
+    width: '75%',
+    marginTop: 20,
+    marginBottom: 10,
+    margin: 'auto'
+  },  
+  warning: {
+    width: '45%',
+    marginTop: 20,
+    marginBottom: 10,
+    margin: 'auto',
+    color: '#d32f2f'
   }
 });
 
@@ -85,6 +98,47 @@ class Page extends Component {
     this.getData(this.state.class, this.state.month);
   }
 
+  componentWillReceiveProps(){
+    switch(this.props.match.params.type){
+      case 'sales':
+        this.setState({
+          title: "Sales",
+          unit: "Consumer Service Treg VII",
+        });
+        break;
+      case 'ttr':
+        this.setState({
+          title: "TTR 3 Jam",
+          unit: "Regional Operation Center Treg VII",
+        });
+        break;
+      case 'gaul':
+        this.setState({
+          title: "Gangguan Ulang",
+          unit: "Regional Operation Center Treg VII",
+        });
+        break;
+      case 'c3mr':
+        this.setState({
+          title: "C3MR",
+          unit: "Payment Collection & Finance Treg VII",
+        });
+        break;
+      case 'tti':
+        this.setState({
+          title: "TTI",
+          unit: "Regional Operation Center Treg VII",
+        });
+        break;
+      default:
+        this.setState({
+          title: "Sales",
+          unit: "Consumer Service Treg VII",
+        });
+        break;
+    }   
+  }
+
   onClassChange = (event) => {
     this.setState({class: event.target.value});
     // this.getData(event.target.value, this.state.month);
@@ -144,7 +198,7 @@ class Page extends Component {
     return (
       <div>
       <Paper className={classes.paper}>
-      <Grid container xs={12} spacing={1}>
+      <Grid container xs={12} md={12} spacing={1}>
         <Grid item xs={12} sm={6} md={8}>
           <Typography variant='h5'>{this.state.title}</Typography>
           <Typography variant='body2' color='textSecondary'>{this.state.unit}</Typography>
@@ -161,26 +215,9 @@ class Page extends Component {
         </Grid>
       </Grid>
       <Grid container xs={12} sm={12} md={12}>
-        <Paper className={classes.tableContainer}>
-        <Table className={classes.table}>
-          {/*   // Order: tpt | Target | Real | Ach. | Growth  */}
-          <TableHead>
-            <TableRow>
-              <THead>No.</THead>
-              <THead>Nama</THead>
-              <THead>Witel</THead>
-              <THead align='right'>Target</THead>
-              <THead align='right'>Realisasi</THead>
-              <THead align='right'>Achievement</THead>
-              <THead align='right'>Growth</THead>
-            </TableRow>
-          </TableHead>
-          {this.state.isLoading ? 
-            <LinearProgress className={classes.table}/> :
-            <ErrorCatch error={this.state.isError} data={this.state.data}/>
-          }
-        </Table>
-        </Paper>
+        {this.state.isLoading ?
+        <LinearProgress className={classes.progress}/> :
+        <DataView classes={classes} error={this.state.isError} data={this.state.data}/>}
       </Grid>
       </Paper>
       </div>
@@ -188,16 +225,33 @@ class Page extends Component {
   }
 }
 
-function ErrorCatch(props){
+function DataView(props){
   let i = 1;
+  const classes = props.classes;
   return (
-    <TableBody>
-    {props.error ? 
-      <Typography>Data Belum Tersedia</Typography> :
-      props.data.map(data => (
+    props.error ? 
+    <Chip label="Data Tidak Termuat" className={classes.warning} color="secondary" variant="outlined"/> :
+    <div className={classes.tableContainer}>
+    <Table className={classes.table}>
+      {/*   // Order: tpt | Target | Real | Ach. | Growth  */}
+      <TableHead>
+        <TableRow>
+          <THead>No.</THead>
+          <THead>Nama</THead>
+          {/* <THead>Witel</THead> */}
+          <THead align='right'>Target</THead>
+          <THead align='right'>Realisasi</THead>
+          <THead align='right'>Achievement</THead>
+          <THead align='right'>Growth</THead>
+        </TableRow>
+      </TableHead> 
+      <TableBody>
+        {props.data.map(data => (
         <DataTable index={i++} data={data}/>
-      ))}
-    </TableBody>
+        ))}
+      </TableBody>
+    </Table>
+    </div>
   )
 }
 
