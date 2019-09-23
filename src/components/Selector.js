@@ -4,14 +4,6 @@ import { Grid, MenuItem, Select, FormControl, InputLabel } from "@material-ui/co
 function Selector(props){
 
   const months = [
-    {n: 'Januari', v: 1},
-    {n: 'Februari', v: 2},
-    {n: 'Maret', v: 3},
-    {n: 'April', v: 4},
-    {n: 'Mei', v: 5},
-    {n: 'Juni', v: 6},
-    {n: 'Juli', v: 7},
-    {n: 'Agustus', v: 8},
     {n: 'September', v: 9},
     {n: 'Oktober', v: 10},
     {n: 'November', v: 11},
@@ -20,8 +12,8 @@ function Selector(props){
   const classSelection = props.selection;
 
   return (
-    <Grid container>
-      <Grid item xs={4}>
+    <Grid container style={{marginTop: '10px'}}>
+      <Grid item xs={6}>
         <FormControl>
           <InputLabel>Kelas</InputLabel>
           <Select 
@@ -33,7 +25,7 @@ function Selector(props){
           </Select>
         </FormControl>
       </Grid>
-      <Grid item xs={4}>
+      <Grid item xs={6}>
         <FormControl>
           <InputLabel>Bulan</InputLabel>
           <Select 
@@ -44,18 +36,6 @@ function Selector(props){
             ))}
           </Select>
         </FormControl>  
-      </Grid>
-      <Grid item xs={4}>
-        <FormControl>
-          <InputLabel>Tahun</InputLabel>
-          <Select 
-            value={props.state.year}
-            onChange={props.onYearChange}>
-            {[2019].map(year => (
-              <MenuItem value={year}>{year}</MenuItem>
-            ))}
-          </Select>
-        </FormControl>
       </Grid>
     </Grid>
   )

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { withStyles, Grid, Card, CardHeader, CardContent, Table, TableHead, TableRow, TableCell, TableBody } from "@material-ui/core";
+import { withStyles, Grid, Card, CardHeader, CardContent, Table, TableHead, TableRow, TableCell, TableBody, Paper } from "@material-ui/core";
 import Charts from '../charts/Charts';
-import Selector from '../Selector';
 import TopTable from '../table/TopTable';
 import Helper from '../../Helper';
 
@@ -11,6 +10,10 @@ const styles = theme => ({
   },  
   table: {
     width: '100%',
+  },
+  tableContainer: {
+    width: '100%',
+    overflowX: 'auto'
   }
 })
 
@@ -18,7 +21,7 @@ const THead = withStyles(theme => ({
   head: {
     backgroundColor: theme.palette.common.black,
     color: theme.palette.common.white,
-    fontSize: 14,
+    fontSize: 13,
   }
 }))(TableCell);
 
@@ -188,11 +191,11 @@ class Main extends Component {
         break;
     };
 
-    const classSelection = [
-      {n:'Kelas A', v:'A'},
-      {n:'Kelas B', v:'B'},
-      {n:'Kelas C', v:'C'}
-    ];
+    // const classSelection = [
+    //   {n:'Kelas A', v:'A'},
+    //   {n:'Kelas B', v:'B'},
+    //   {n:'Kelas C', v:'C'}
+    // ];
 
     const datas = [
       {title:'Gangguan Ulang', chart: 'bar', color:'#1565c0', route:'/perf/gaul', dummyData: gaul, source:'Nonatero'},
@@ -211,24 +214,17 @@ class Main extends Component {
         <Grid item xs={8}>
           {/* <Typography variant='h4'>Dashboard</Typography> */}
         </Grid>
-        <Grid item xs={4}>
-          <Selector 
-            state={this.state} 
-            onClassChange={this.onClassChange}
-            onMonthChange={this.onMonthChange}
-            onYearChange={this.onYearChange}
-            selection={classSelection}/>
-        </Grid>
       </Grid>
       <Grid spacing={2} container>
-        <Grid item xs={5}>
+        <Grid item xs={12} sm={6} md={6}>
           <Card>
             <CardHeader 
               title="Top 3 Datel/Ubis" 
               titleTypographyProps={{variant:'h6'}}
               subheader={'Mtd '+month+' '+this.state.year}
               subheaderTypographyProps={{variant:'button', color:'textSecondary'}}/>
-            <CardContent>        
+            <CardContent>
+              <Paper className={classes.tableContainer}>        
               <Table className={classes.table}>
               {/*   // Order: TPT | Witel | Datel | Kelas | Skor  */}
                 <TableHead>
@@ -245,17 +241,19 @@ class Main extends Component {
                   ))}
                 </TableBody>
               </Table>
+              </Paper>
             </CardContent>
           </Card>
         </Grid>
-        <Grid item xs={7}>
+        <Grid item xs={12} sm={6} md={6}>
           <Card>
             <CardHeader 
               title="Top 3 TPT" 
               titleTypographyProps={{variant:'h6'}}
               subheader={'Mtd '+month+' '+this.state.year}
               subheaderTypographyProps={{variant:'button', color:'textSecondary'}}/>
-            <CardContent>        
+            <CardContent>
+              <Paper className={classes.tableContainer}>        
               <Table className={classes.table}>
               {/*   // Order: TPT | Witel | Datel | Kelas | Skor  */}
                 <TableHead>
@@ -273,11 +271,12 @@ class Main extends Component {
                   ))}
                 </TableBody>
               </Table>
+              </Paper>
             </CardContent>
           </Card>
         </Grid>
         {datas.map(data => (
-        <Grid item xs={4}>
+        <Grid item xs={12} sm={6} md={4}>
           {/* next we will generate every data on chart */}
           <Charts 
             title={data.title} 
@@ -289,7 +288,7 @@ class Main extends Component {
             class={this.state.class}/>
         </Grid>
         ))}
-        <Grid item xs={4}>
+        <Grid item xs={12} sm={6} md={4}>
           <Card>
             <CardHeader 
               title='Network Reporting'

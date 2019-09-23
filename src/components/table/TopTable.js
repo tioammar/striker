@@ -1,5 +1,11 @@
 import React from "react";
-import { TableRow, TableCell } from "@material-ui/core";
+import { TableRow, TableCell, withStyles } from "@material-ui/core";
+
+const TBody = withStyles(theme => ({
+  body: {
+    fontSize: 13,
+  }
+}))(TableCell);
 
 function TopTable(props) {
 
@@ -8,13 +14,13 @@ function TopTable(props) {
   // TPT | Witel | Datel | Kelas | Skor
   return (
     <TableRow>
-      <TableCell>{data.i}.</TableCell>
-      <TableCell>{data.name}</TableCell>
-      <TableCell align='right'>{data.witel}</TableCell>
-      {props.isUbis ? '' : <TableCell align='right'>{data.class}</TableCell>}
+      <TBody>{data.i}.</TBody>
+      <TBody>{data.name}</TBody>
+      <TBody align='right'>{data.witel}</TBody>
+      {props.isUbis ? '' : <TBody align='right'>{data.class}</TBody>}
       {data.score >= 100 ? 
-        <TableCell align='right' style={{color: '#2e7d32'}}>{data.score} %</TableCell> : 
-        <TableCell align='right' style={{color: '#c62828'}}>{data.score} %</TableCell>}
+        <TBody align='right' style={{color: '#2e7d32'}}>{data.score} %</TBody> : 
+        <TBody align='right' style={{color: '#c62828'}}>{data.score} %</TBody>}
     </TableRow>
   )
 }

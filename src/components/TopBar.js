@@ -3,7 +3,7 @@ import { withStyles, Drawer, Divider } from "@material-ui/core";
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typhography from '@material-ui/core/Typography';
-import { Box, Grid, List, ListItem, ListItemText, IconButton, Avatar, ListItemIcon } from '@material-ui/core';
+import { Box, Grid, List, ListItem, ListItemText, IconButton, ListItemIcon } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import BarChartIcon from '@material-ui/icons/BarChart';
@@ -72,13 +72,13 @@ class TopBar extends Component {
               <Box bgcolor="#c62828" color="primary.contrastText">
                 <Grid container>
                   <Grid container>
-                    <Grid item>
+                    {/* <Grid item>
                     <Avatar 
                       className={classes.avatarBig} 
                       src={this.props.image}
                     />
-                    </Grid>
-                    <Grid className={classes.drawerHeader} item sm container>
+                    </Grid> */}
+                    {/* <Grid className={classes.drawerHeader} item sm container>
                       <Grid item container direction='column'>
                         <Grid item>
                           <Typhography variant='subtitle1' color='inherit'>
@@ -92,7 +92,7 @@ class TopBar extends Component {
                           </Typhography>
                         </Grid>
                       </Grid>
-                    </Grid>
+                    </Grid> */}
                   </Grid>
                 </Grid>
               </Box>
@@ -125,7 +125,7 @@ class TopBar extends Component {
             </Drawer>
             <Typhography className={classes.title} variant='h6' color='inherit'>
               {/* Nama: STRIKER (SISTEM MONITORING KINERJA KORTER) */}
-              Dashboard TPT Telkom Regional VII
+              STRIKER TReg VII
             </Typhography>
             <Typhography variant='title' color='inherit'>
               Hi, {this.props.username}!

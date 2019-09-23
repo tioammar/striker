@@ -1,5 +1,11 @@
 import React from "react";
-import { TableRow, TableCell } from "@material-ui/core";
+import { TableRow, TableCell, withStyles } from "@material-ui/core";
+
+const TBody = withStyles(theme => ({
+  body: {
+    fontSize: 13,
+  }
+}))(TableCell);
 
 function DataTable(props) {
 
@@ -12,17 +18,17 @@ function DataTable(props) {
 
   return (
     <TableRow>
-      <TableCell>{index}.</TableCell>
-      <TableCell>{data.location}</TableCell>
-      <TableCell>{data.witel}</TableCell>
-      <TableCell align='right'>{data.currentTarget}</TableCell>
-      <TableCell align='right'>{data.currentMonth}</TableCell>
+      <TBody>{index}.</TBody>
+      <TBody>{data.location}</TBody>
+      <TBody>{data.witel}</TBody>
+      <TBody align='right'>{data.currentTarget}</TBody>
+      <TBody align='right'>{data.currentMonth}</TBody>
       {data.achievement >= 100 ? 
-        <TableCell align='right' style={{color: '#2e7d32'}}>{(data.achievement * 1).toFixed(2)} %</TableCell> : 
-        <TableCell align='right' style={{color: '#c62828'}}>{(data.achievement * 1).toFixed(2)} %</TableCell>}
+        <TBody align='right' style={{color: '#2e7d32'}}>{(data.achievement * 1).toFixed(2)} %</TBody> : 
+        <TBody align='right' style={{color: '#c62828'}}>{(data.achievement * 1).toFixed(2)} %</TBody>}
       {getGrowth() > 0 ? 
-        <TableCell align='right' style={{color: '#2e7d32'}}>{getGrowth()} %</TableCell> : 
-        <TableCell align='right' style={{color: '#c62828'}}>{getGrowth()} %</TableCell>}
+        <TBody align='right' style={{color: '#2e7d32'}}>{getGrowth()} %</TBody> : 
+        <TBody align='right' style={{color: '#c62828'}}>{getGrowth()} %</TBody>}
     </TableRow>
   )
 }

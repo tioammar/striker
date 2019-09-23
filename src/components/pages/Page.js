@@ -1,6 +1,6 @@
 import React from 'react';
 import { Component } from "react";
-import { Typography, Grid, withStyles, Table, TableHead, TableRow, TableCell, TableBody, Paper, LinearProgress } from "@material-ui/core";
+import { Typography, Grid, withStyles, Table, TableHead, TableRow, TableCell, TableBody, Paper, LinearProgress, Button } from "@material-ui/core";
 import Selector from '../Selector';
 import DataTable from '../table/DataTable';
 
@@ -10,11 +10,15 @@ const styles = theme => ({
     margin: 'auto',
     width: '80%',
     marginTop: 20,
-    marginBottom: 20,
+    marginBottom: 20
   },
   table: {
-    width: '100%',
+    width: '100%'
+  },
+  tableContainer: {
     marginTop: 20,
+    width: '100%',
+    overflowX: 'auto'
   }
 });
 
@@ -22,7 +26,7 @@ const THead = withStyles(theme => ({
   head: {
     backgroundColor: theme.palette.common.black,
     color: theme.palette.common.white,
-    fontSize: 15,
+    fontSize: 13,
   }
 }))(TableCell);
 
@@ -83,16 +87,20 @@ class Page extends Component {
 
   onClassChange = (event) => {
     this.setState({class: event.target.value});
-    this.getData(event.target.value, this.state.month);
+    // this.getData(event.target.value, this.state.month);
   }
 
   onMonthChange = (event) => {
     this.setState({month: event.target.value});
-    this.getData(this.state.class, event.target.value)
+    // this.getData(this.state.class, event.target.value)
   }
 
   onYearChange = (event) => {
     this.setState({year: event.target.value});
+  }
+
+  onSubmitClicked = (event) => {
+    this.getData(this.state.class, this.state.month);
   }
 
   getData(cls, bln) {
@@ -136,21 +144,24 @@ class Page extends Component {
     return (
       <div>
       <Paper className={classes.paper}>
-      <Grid container xs={12}>
-        <Grid item xs={8}>
+      <Grid container xs={12} spacing={1}>
+        <Grid item xs={12} sm={6} md={8}>
           <Typography variant='h5'>{this.state.title}</Typography>
           <Typography variant='body2' color='textSecondary'>{this.state.unit}</Typography>
         </Grid>  
-        <Grid item xs={4}>
+        <Grid item xs={9} sm={4} md={3}>
           <Selector 
               state={this.state} 
               onClassChange={this.onClassChange}
               onMonthChange={this.onMonthChange}
-              onYearChange={this.onYearChange}
               selection={classSelection}/>
         </Grid>
+        <Grid item xs={3} sm={2} md={1}>
+          <Button variant="contained" style={{backgroundColor: '#388e3c', color: 'white', marginTop: '20px'}} onClick={this.onSubmitClicked}>Submit</Button>
+        </Grid>
       </Grid>
-      <Grid container xs={12}>
+      <Grid container xs={12} sm={12} md={12}>
+        <Paper className={classes.tableContainer}>
         <Table className={classes.table}>
           {/*   // Order: tpt | Target | Real | Ach. | Growth  */}
           <TableHead>
@@ -169,6 +180,7 @@ class Page extends Component {
             <ErrorCatch error={this.state.isError} data={this.state.data}/>
           }
         </Table>
+        </Paper>
       </Grid>
       </Paper>
       </div>
