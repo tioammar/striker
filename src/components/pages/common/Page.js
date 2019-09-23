@@ -1,8 +1,8 @@
 import React from 'react';
 import { Component } from "react";
 import { Typography, Grid, withStyles, Table, TableHead, TableRow, TableCell, TableBody, Paper, LinearProgress, Button, Chip } from "@material-ui/core";
-import Selector from '../Selector';
-import DataTable from '../table/DataTable';
+import Selector from '../../Selector';
+import DataTable from '../../table/DataTable';
 
 const styles = theme => ({
   paper: {
@@ -52,101 +52,18 @@ class Page extends Component {
     data: [],
     isError: false,
     isLoading: false,
-    title: "",
-    unit: "",
   };
 
   componentDidMount(){
-    switch(this.props.match.params.type){
-      case 'sales':
-        this.setState({
-          title: "Sales",
-          unit: "Consumer Service Treg VII",
-        });
-        break;
-      case 'ttr':
-        this.setState({
-          title: "TTR 3 Jam",
-          unit: "Regional Operation Center Treg VII",
-        });
-        break;
-      case 'gaul':
-        this.setState({
-          title: "Gangguan Ulang",
-          unit: "Regional Operation Center Treg VII",
-        });
-        break;
-      case 'c3mr':
-        this.setState({
-          title: "C3MR",
-          unit: "Payment Collection & Finance Treg VII",
-        });
-        break;
-      case 'tti':
-        this.setState({
-          title: "TTI",
-          unit: "Regional Operation Center Treg VII",
-        });
-        break;
-      default:
-        this.setState({
-          title: "Sales",
-          unit: "Consumer Service Treg VII",
-        });
-        break;
-    }
     this.getData(this.state.class, this.state.month);
-  }
-
-  componentWillReceiveProps(){
-    switch(this.props.match.params.type){
-      case 'sales':
-        this.setState({
-          title: "Sales",
-          unit: "Consumer Service Treg VII",
-        });
-        break;
-      case 'ttr':
-        this.setState({
-          title: "TTR 3 Jam",
-          unit: "Regional Operation Center Treg VII",
-        });
-        break;
-      case 'gaul':
-        this.setState({
-          title: "Gangguan Ulang",
-          unit: "Regional Operation Center Treg VII",
-        });
-        break;
-      case 'c3mr':
-        this.setState({
-          title: "C3MR",
-          unit: "Payment Collection & Finance Treg VII",
-        });
-        break;
-      case 'tti':
-        this.setState({
-          title: "TTI",
-          unit: "Regional Operation Center Treg VII",
-        });
-        break;
-      default:
-        this.setState({
-          title: "Sales",
-          unit: "Consumer Service Treg VII",
-        });
-        break;
-    }   
   }
 
   onClassChange = (event) => {
     this.setState({class: event.target.value});
-    // this.getData(event.target.value, this.state.month);
   }
 
   onMonthChange = (event) => {
     this.setState({month: event.target.value});
-    // this.getData(this.state.class, event.target.value)
   }
 
   onYearChange = (event) => {
@@ -161,8 +78,8 @@ class Page extends Component {
     this.setState({isLoading: true});
     let query = "";
     cls !== 'D' ? 
-      query = "http://localhost:8080/"+this.props.match.params.type+"tpt?cls="+cls+"&bln="+bln : 
-      query = "http://localhost:8080/"+this.props.match.params.type+"ubis?bln="+bln;
+      query = "http://localhost:8080/"+this.props.url+"tpt?cls="+cls+"&bln="+bln : 
+      query = "http://localhost:8080/"+this.props.url+"ubis?bln="+bln;
     
     fetch(query)
       .then(response => {
@@ -199,10 +116,6 @@ class Page extends Component {
       <div>
       <Paper className={classes.paper}>
       <Grid container xs={12} md={12} spacing={1}>
-        <Grid item xs={12} sm={6} md={8}>
-          <Typography variant='h5'>{this.state.title}</Typography>
-          <Typography variant='body2' color='textSecondary'>{this.state.unit}</Typography>
-        </Grid>  
         <Grid item xs={9} sm={4} md={3}>
           <Selector 
               state={this.state} 
@@ -230,7 +143,7 @@ function DataView(props){
   const classes = props.classes;
   return (
     props.error ? 
-    <Chip label="Data Tidak Termuat" className={classes.warning} color="secondary" variant="outlined"/> :
+    <Chip label="Tidak Terhubung k Server" className={classes.warning} color="secondary" variant="outlined"/> :
     <div className={classes.tableContainer}>
     <Table className={classes.table}>
       {/*   // Order: tpt | Target | Real | Ach. | Growth  */}

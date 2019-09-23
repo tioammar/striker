@@ -136,7 +136,7 @@ class Main extends Component {
               subheaderTypographyProps={{variant:'button', color:'textSecondary'}}/>
             <CardContent>
               {this.state.isError ? 
-              <Chip label="Data Tidak Termuat" className={classes.warning} color="secondary" variant="outlined"/> :
+              <Chip label="Tidak Terhubung ke Server" className={classes.warning} color="secondary" variant="outlined"/> :
               <Grid xs={12} container spacing={2}>
                 <Grid xs={12} md={6} item container>
                   <Grid xs={12}><Chip className={classes.chip} style={{backgroundColor: "#d32f2f", color: "white"}} label="Kelas A"/></Grid>

@@ -121,25 +121,25 @@ class TopBar extends Component {
                 </ListItem>
                 </Link>
                 <Divider />
-                <Link to='/perf/ttr' className={classes.link}>
+                <Link to='/ttr' className={classes.link}>
                 <ListItem button key='territory' onClick={this.closeDrawer}>
                   <ListItemIcon><BuildIcon /></ListItemIcon>
                   <ListItemText primary='TTR 3 Jam'/>
                 </ListItem>
                 </Link>
-                <Link to='/perf/gaul' className={classes.link}>
+                <Link to='/gaul' className={classes.link}>
                 <ListItem button key='territory' onClick={this.closeDrawer}>
                   <ListItemIcon><LoopIcon /></ListItemIcon>
                   <ListItemText primary='Gangguan Ulang'/>
                 </ListItem>
                 </Link>
-                <Link to='/perf/sales' className={classes.link}>
+                <Link to='/sales' className={classes.link}>
                 <ListItem button key='territory' onClick={this.closeDrawer}>
                   <ListItemIcon><QueuePlayNextIcon /></ListItemIcon>
                   <ListItemText primary='Sales'/>
                 </ListItem>
                 </Link>
-                <Link to='/perf/c3mr' className={classes.link}>
+                <Link to='/c3mr' className={classes.link}>
                 <ListItem button key='territory' onClick={this.closeDrawer}>
                   <ListItemIcon><AccountBalanceWalletIcon /></ListItemIcon>
                   <ListItemText primary='C3MR'/>

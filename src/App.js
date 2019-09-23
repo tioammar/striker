@@ -3,10 +3,14 @@ import './App.css';
 import TopBar from './components/TopBar';
 import Dashboard from './components/Dashboard';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Page from './components/pages/Page';
+import Page from './components/pages/common/Page';
+import Sales from './components/pages/Sales';
+import C3MR from './components/pages/C3MR';
+import TTR from './components/pages/TTR';
 import Detail from './components/pages/Detail';
 import { withStyles } from '@material-ui/styles';
 import Territory from './components/pages/Territory';
+import Gaul from './components/pages/Gaul';
 
 const styles = theme => ({
   paper: {
@@ -32,7 +36,10 @@ class App extends Component {
         />
         <Route path='/' exact component={Dashboard}/>
         <Route path='/detail' component={Detail}/>
-        <Route path='/perf/:type' component={Page}/>
+        <Route path='/sales' component={Sales}/>
+        <Route path='/ttr' component={TTR}/>
+        <Route path='/gaul' component={Gaul}/>
+        <Route path='/c3mr' component={C3MR}/>
         <Route path='/territory' component={Territory}/>
         {/* for setting param just add /:param. 
         and get param on component by using props.match.params.param */}
