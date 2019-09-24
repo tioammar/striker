@@ -23,8 +23,8 @@ const styles = theme => ({
     margin: 'auto'
   },  
   warning: {
-    width: '100%',
-    margin: '0 auto',
+    width: '80%',
+    margin: 'auto',
     color: '#d32f2f'
   }
 })
@@ -136,7 +136,12 @@ class Main extends Component {
               subheaderTypographyProps={{variant:'button', color:'textSecondary'}}/>
             <CardContent>
               {this.state.isError ? 
-              <Chip label="Tidak Terhubung ke Server" className={classes.warning} color="secondary" variant="outlined"/> :
+              <Grid container xs={12} sm={12} md={12}>
+                <Chip label="Tidak Terhubung ke Server" 
+                  className={classes.warning} 
+                  color="secondary" 
+                  variant="outlined"/>
+              </Grid> :
               <Grid xs={12} container spacing={2}>
                 <Grid xs={12} md={6} item container>
                   <Grid xs={12}><Chip className={classes.chip} style={{backgroundColor: "#d32f2f", color: "white"}} label="Kelas A"/></Grid>

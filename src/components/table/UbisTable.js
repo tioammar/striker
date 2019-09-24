@@ -14,12 +14,13 @@ function UbisTable(props) {
 
   const data = props.data;
   const index = props.index;
+  const type = props.type;
 
   // Order: No. | Nama | Kepala | Kelas | Witel
     return (
       <TableRow>
         <TableCell>{index}.</TableCell>
-        <TableCell><Link to={'/detail/'+data.id} className={classes.link}>{data.location}</Link></TableCell>
+        <TableCell><Link to={'/detail/'+type+'/'+data.id} className={classes.link}>{data.location}</Link></TableCell>
         {/* <TableCell>{data.leader}</TableCell> */}
         <TableCell>{data.witel}</TableCell>
       </TableRow>

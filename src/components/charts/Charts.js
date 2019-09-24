@@ -24,7 +24,7 @@ function Charts(props){
       <CardHeader 
         title={props.title} 
         titleTypographyProps={{variant:'h6'}}
-        subheader={'Source: '+props.source+' | Kelas: '+props.class}
+        subheader={'Source: '+props.source}
         subheaderTypographyProps={{variant:'caption', color:'textSecondary'}}/>
       </Link>
       <CardContent>

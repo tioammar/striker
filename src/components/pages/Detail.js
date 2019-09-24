@@ -1,6 +1,6 @@
 import React from 'react';
 import { Component } from "react";
-import { Grid, Card, CardHeader, CardContent, withStyles, Table, TableCell, TableHead, TableRow, TableBody, MenuItem, Select, FormControl, InputLabel } from "@material-ui/core";
+import { Chip, LinearProgress, Grid, Card, CardHeader, CardContent, withStyles, Table, TableCell, TableHead, TableRow, TableBody, MenuItem, Select, FormControl, InputLabel, Typography } from "@material-ui/core";
 import Charts from '../charts/Charts';
 
 const styles = theme => ({
@@ -15,6 +15,19 @@ const styles = theme => ({
     width: '100%',
     overflowX: 'auto'
   },
+  progress: {
+    width: '75%',
+    marginTop: 20,
+    marginBottom: 10,
+    margin: 'auto'
+  },  
+  warning: {
+    width: '80%',
+    marginTop: 20,
+    marginBottom: 10,
+    margin: 'auto',
+    color: '#d32f2f'
+  }
 });
 
 const THead = withStyles(theme => ({
@@ -44,26 +57,22 @@ function PerfTable(props){
 
   const data = props.data;
 
-  function getAchievement(){
-    return ((data.real / data.target) * 100).toFixed(1);
-  }
-
   function isWinning(){
     return Number(data.rank) === 1;
   }
 
   function isAchieve(){
-    return getAchievement() >= 100; 
+    return data.score >= 100; 
   }
 
   return (
     <TableRow>
-      <TableCell>{data.cat}</TableCell>
+      <TableCell>{data.indikator}</TableCell>
       <TableCell align='right'>{data.target}</TableCell>
       <TableCell align='right'>{data.real}</TableCell>
       {isAchieve() ? 
-      <TableCell align='right' style={{color: '#2e7d32'}}>{getAchievement()}%</TableCell> :
-      <TableCell align='right' style={{color: '#c62828'}}>{getAchievement()}%</TableCell>}
+      <TableCell align='right' style={{color: '#2e7d32'}}>{(data.score*1).toFixed(2)}%</TableCell> :
+      <TableCell align='right' style={{color: '#c62828'}}>{(data.score*1).toFixed(2)}%</TableCell>}
       {isWinning() ?
       <TableCell align='right' style={{fontWeight: 'bolder', color: '#2e7d32'}}>{data.rank}</TableCell> :
       <TableCell align='right' style={{fontWeight: 'bolder', color: '#c62828'}}>{data.rank}</TableCell>}
@@ -76,6 +85,45 @@ class Detail extends Component {
   state = {
     year: 2019,
     month: new Date().getMonth()+1,
+    isLoading: false,
+    isError: false,
+    position: [],
+    sales: [],
+    ttr: [],
+    gaul: [],
+    c3mr: [],
+  }
+
+  componentDidMount(){
+    this.getData();
+  }
+
+  getData(){
+    this.setState({isLoading: true});
+    let query = "http://localhost:8080/"+this.props.match.params.type+"detail?id="+this.props.match.params.id+"&bln="+this.state.month;
+    fetch(query)
+      .then(response => {
+        if(response.ok) return response.json();
+        else throw Error(response.statusText);
+      })
+      .then(json => {
+        this.setState({
+          position: json.currentPosition,
+          sales: json.salesTrend,
+          ttr: json.ttrTrend,
+          gaul: json.gaulTrend,
+          c3mr: json.c3mrTrend,
+          isLoading: false,
+          isError: false,
+        });
+      })
+      .catch(error => {
+        this.setState({
+          position: [],
+          isLoading: false,
+          isError: true,
+        });
+      });
   }
 
   onMonthChange = (event) => {
@@ -83,31 +131,14 @@ class Detail extends Component {
   }
 
   render() {
-    const dummyData = [
-      {m:'Apr', ach:(Math.random() * (100 - 91) + 91).toFixed(0)},
-      {m:'Mei', ach:(Math.random() * (100 - 91) + 91).toFixed(0)},
-      {m:'Jun', ach:(Math.random() * (100 - 91) + 91).toFixed(0)},
-      {m:'Jul', ach:(Math.random() * (100 - 91) + 91).toFixed(0)},
-      {m:'Agu', ach:(Math.random() * (100 - 91) + 91).toFixed(0)}
-    ];
 
     const datas = [
-      {title:'Gangguan Ulang', chart:'line', color:'#1565c0', route:'/gaul/', dummyData: dummyData, source:'Nonatero'},
-      {title:'TTR 3 Jam', chart:'line', color:'#2e7d32', route:'/ttr/', dummyData: dummyData, source:'Nonatero'},
-      {title:'Sales', chart:'line', color:'#c62828', route:'/sales/', dummyData: dummyData, source:'CBD'},
-      {title:'TTI', chart:'line', color:'#607d8b', route:'/sales/', dummyData: dummyData, source:'CBD'},
-      {title:'C3MR', chart:'line', color:'#ef6c00', route:'/c3mr/', dummyData: dummyData, source:'MyBrains'}
+      {title:'Gangguan Ulang', chart:'line', color:'#1565c0', route:'/gaul/', dummyData: this.state.gaul, source:'Nonatero', val:'%'},
+      {title:'TTR 3 Jam', chart:'line', color:'#2e7d32', route:'/ttr/', dummyData: this.state.ttr, source:'Nonatero', val:'%'},
+      {title:'Sales', chart:'line', color:'#c62828', route:'/sales/', dummyData: this.state.sales, source:'CBD', val:'ssl'},
+      {title:'C3MR', chart:'line', color:'#ef6c00', route:'/c3mr/', dummyData: this.state.c3mr, source:'MyBrains', val:'%'}
     ];
-
     const {classes} = this.props;
-
-    const perf = [
-      {cat:'Gangguan Ulang', rank:(Math.random() * (5 - 1) + 1).toFixed(0), target:10, real:(Math.random() * (15 - 5) + 5).toFixed(2)},
-      {cat:'TTR 3 Jam', rank:(Math.random() * (5 - 1) + 1).toFixed(0), target:85, real:(Math.random() * (100 - 60) + 60).toFixed(2)},
-      {cat:'Sales', rank:(Math.random() * (5 - 1) + 1).toFixed(0), target:100, real:(Math.random() * (105 - 98) + 98).toFixed(2)},
-      {cat:'TTI', rank:(Math.random() * (5 - 1) + 1).toFixed(0), target:100, real:(Math.random() * (105 - 98) + 98).toFixed(2)},
-      {cat:'C3MR', rank:(Math.random() * (5 - 1) + 1).toFixed(0), target:97.5, real:(Math.random() * (105 - 90) + 90).toFixed(2)}
-    ];
 
     const personil = [
       {nama:'Personil A', nik:'XXXXX', job:'Koordinator', contact:'xxxxxx@xxx.com'},
@@ -127,6 +158,7 @@ class Detail extends Component {
     let i = 1;
     return (
       <div className={classes.main}>
+      {/* <Typography>{this.state.type} id: {this.state.id}</Typography> */}
       <Grid container className={classes.selector}>
         <Grid item xs={4}>
           <FormControl>
@@ -141,6 +173,16 @@ class Detail extends Component {
           </FormControl>
         </Grid>
       </Grid>
+      {this.state.isLoading ? 
+      <LinearProgress className={classes.progress}/> :
+      <div>
+      {this.state.isError ?
+      <Grid container xs={12} sm={12} md={12}>
+        <Chip label="Tidak Terhubung ke Server" 
+          className={classes.warning} 
+          color="secondary" 
+          variant="outlined"/>
+      </Grid> :
       <Grid spacing={2} container>
         <Grid item xs={12} sm={8} md={8}>
           <Card>
@@ -157,7 +199,7 @@ class Detail extends Component {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                {perf.map(data => (
+                {this.state.position.map(data => (
                   <PerfTable data={data}/>
                 ))}
                 </TableBody>
@@ -177,7 +219,7 @@ class Detail extends Component {
             source={data.source}/>
         </Grid>
         ))}
-        <Grid item xs={12} sm={6} md={4}>
+        {/* <Grid item xs={12} sm={6} md={4}>
           <Card>
             <CardHeader 
               title='Network Reporting'
@@ -185,9 +227,10 @@ class Detail extends Component {
               subheader='Source: Regional Network Operation Treg VII'
               subheaderTypographyProps={{variant:'caption', color:'textSecondary'}}/>
           </Card>
-        </Grid>
-      </Grid>
-      <Grid spacing={2} container>
+        </Grid> */}
+      </Grid>}
+      </div>}
+      {/* <Grid spacing={2} container>
         <Grid item xs={12}>
           <Card>
             <CardHeader
@@ -215,7 +258,7 @@ class Detail extends Component {
             </CardContent>
           </Card>
         </Grid>
-      </Grid>
+      </Grid> */}
       </div>
     )
   }

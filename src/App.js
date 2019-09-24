@@ -34,7 +34,7 @@ class App extends Component {
           unit='BPP'
         />
         <Route path='/' exact component={Dashboard}/>
-        <Route path='/detail' component={Detail}/>
+        <Route path='/detail/:type/:id' component={Detail}/>
         <Route path='/sales' component={Sales}/>
         <Route path='/ttr' component={TTR}/>
         <Route path='/gaul' component={Gaul}/>

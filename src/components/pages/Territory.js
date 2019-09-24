@@ -97,6 +97,8 @@ class Territory extends Component {
       {n: 'Datel/Ubis', v:'D'},
     ];
     let i = 1;
+    let type;
+    this.state.class === 'D' ? type = 'ubis' : type = 'tpt';
 
     return (
       // Order: No. | Nama | Kepala | Kelas | Witel
@@ -119,7 +121,12 @@ class Territory extends Component {
           </Grid>
         </Grid>
         {this.state.isError ? 
-        <Chip label="Tidak Terhubung ke Server" className={classes.warning} color="secondary" variant="outlined"/> :
+        <Grid container xs={12} sm={12} md={12}>
+          <Chip label="Tidak Terhubung ke Server" 
+            className={classes.warning} 
+            color="secondary" 
+            variant="outlined"/>
+        </Grid> :
         <Grid container xs={12}>
           {this.state.isLoading ? 
           <LinearProgress className={classes.progress}/> :
@@ -137,7 +144,7 @@ class Territory extends Component {
             </TableHead>
             <TableBody>
             {this.state.datas.map(data => (
-              <UbisTable index={i++} data={data} />
+              <UbisTable index={i++} data={data} type={type}/>
             ))}
             </TableBody>
           </Table>
