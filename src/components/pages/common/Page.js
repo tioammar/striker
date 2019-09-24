@@ -1,6 +1,6 @@
 import React from 'react';
 import { Component } from "react";
-import { Typography, Grid, withStyles, Table, TableHead, TableRow, TableCell, TableBody, Paper, LinearProgress, Button, Chip } from "@material-ui/core";
+import { Grid, withStyles, Table, TableHead, TableRow, TableCell, TableBody, Paper, LinearProgress, Button, Chip } from "@material-ui/core";
 import Selector from '../../Selector';
 import DataTable from '../../table/DataTable';
 
@@ -27,7 +27,7 @@ const styles = theme => ({
     margin: 'auto'
   },  
   warning: {
-    width: '45%',
+    width: '80%',
     marginTop: 20,
     marginBottom: 10,
     margin: 'auto',
@@ -143,7 +143,7 @@ function DataView(props){
   const classes = props.classes;
   return (
     props.error ? 
-    <Chip label="Tidak Terhubung k Server" className={classes.warning} color="secondary" variant="outlined"/> :
+    <Chip label="Tidak Terhubung ke Server" className={classes.warning} color="secondary" variant="outlined"/> :
     <div className={classes.tableContainer}>
     <Table className={classes.table}>
       {/*   // Order: tpt | Target | Real | Ach. | Growth  */}

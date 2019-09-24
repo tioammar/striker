@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { TableCell, withStyles, Paper, Grid, Typography, Select, FormControl, InputLabel, MenuItem, Table, TableHead, TableRow, TableBody } from "@material-ui/core";
+import { TableCell, Chip, withStyles, Paper, Grid, Typography, Select, FormControl, InputLabel, MenuItem, Table, TableHead, TableRow, TableBody, LinearProgress } from "@material-ui/core";
 import UbisTable from '../table/UbisTable';
 
 const styles = theme => ({
@@ -12,7 +12,24 @@ const styles = theme => ({
   },
   table: {
     width: '100%',
+  },
+  tableContainer: {
     marginTop: 20,
+    width: '100%',
+    overflowX: 'auto'
+  },
+  progress: {
+    width: '75%',
+    marginTop: 20,
+    marginBottom: 10,
+    margin: 'auto'
+  },  
+  warning: {
+    width: '80%',
+    marginTop: 20,
+    marginBottom: 10,
+    margin: 'auto',
+    color: '#d32f2f'
   }
 });
 
@@ -27,59 +44,50 @@ const THead = withStyles(theme => ({
 class Territory extends Component {
 
   state = {
-    class: 'A',
+    class: 'D',
+    datas: [],
+    isLoading: false,
+    isError: false,
+  }
+
+  componentDidMount(){
+    this.getData(this.state.class);
+  }
+
+  getData(cls){
+    this.setState({isLoading: true})
+    let query = cls === 'D' ?
+    "http://localhost:8080/ubislist" :
+    "http://localhost:8080/tptlist?cls="+cls;
+
+    fetch(query)
+    .then(response => {
+      if(response.ok) return response.json();
+      else throw Error(response.statusText);
+    })
+    .then(json => {
+      this.setState({
+        datas: json.data,
+        isLoading: false,
+        isError: false,
+      });
+      console.log(JSON.stringify(json.data))
+    })
+    .catch(error => {
+      this.setState({
+        datas: [],
+        isLoading: false,
+        isError: true,
+      });
+    });
   }
 
   onClassChange = (event) => {
     this.setState({class: event.target.value});
+    this.getData(event.target.value);
   }
 
   render() {
-
-    const classA = [
-      {id: 1, name: 'TPT A-1', leader: 'Leader 1', class:'A', witel:'Witel X'},
-      {id: 2, name: 'TPT A-2', leader: 'Leader 2', class:'A', witel:'Witel X'},
-      {id: 3, name: 'TPT A-3', leader: 'Leader 3', class:'A', witel:'Witel X'},
-    ];
-
-    const classB = [
-      {id: 1, name: 'TPT B-1', leader: 'Leader 1', class:'B', witel:'Witel X'},
-      {id: 2, name: 'TPT B-2', leader: 'Leader 2', class:'B', witel:'Witel X'},
-      {id: 3, name: 'TPT B-3', leader: 'Leader 3', class:'B', witel:'Witel X'},
-    ];
-
-    const classC = [
-      {id: 1, name: 'TPT C-1', leader: 'Leader 1', class:'C', witel:'Witel X'},
-      {id: 2, name: 'TPT C-2', leader: 'Leader 2', class:'C', witel:'Witel X'},
-      {id: 3, name: 'TPT C-3', leader: 'Leader 3', class:'C', witel:'Witel X'},
-    ];
-
-    const classD = [
-      {id: 1, name: 'Ubis 1', leader: 'Leader 1', class:'Datel/Ubis', witel:'Witel X'},
-      {id: 2, name: 'Datel 1', leader: 'Leader 2', class:'Datel/Ubis', witel:'Witel X'},
-      {id: 3, name: 'Datel 2', leader: 'Leader 3', class:'Datel/Ubis', witel:'Witel X'},
-      {id: 4, name: 'Ubis 2', leader: 'Leader 4', class:'Datel/Ubis', witel:'Witel X'},
-    ];
-
-    let datas = [];
-
-    switch(this.state.class){
-      case 'A':
-        datas = classA;
-        break;
-      case 'B':
-        datas = classB;
-        break;
-      case 'C':
-        datas = classC;
-        break;
-      case 'D':
-        datas = classD;
-        break;
-      default:
-        datas = classA;
-        break;
-    }
 
     const {classes} = this.props;
     const select = [
@@ -94,10 +102,10 @@ class Territory extends Component {
       // Order: No. | Nama | Kepala | Kelas | Witel
       <Paper className={classes.main}>
         <Grid container xs={12}>
-          <Grid item xs={10}>
+          <Grid item xs={8} sm={9} md={10}>
             <Typography variant='h5'>Daftar Wilayah</Typography>
           </Grid>  
-          <Grid item xs={2}>
+          <Grid item xs={4} sm={3} md={2}>
             <FormControl>
               <InputLabel>Kelas</InputLabel>
               <Select 
@@ -110,26 +118,33 @@ class Territory extends Component {
             </FormControl>
           </Grid>
         </Grid>
+        {this.state.isError ? 
+        <Chip label="Tidak Terhubung ke Server" className={classes.warning} color="secondary" variant="outlined"/> :
         <Grid container xs={12}>
+          {this.state.isLoading ? 
+          <LinearProgress className={classes.progress}/> :
+          <div className={classes.tableContainer}>
           <Table className={classes.table}>
             <TableHead>
               <TableRow>
                 <THead>No.</THead>
-                <THead>Nama</THead>
-                {this.state.class !== 'D' ? 
+                <THead>Territory</THead>
+                {/* {this.state.class !== 'D' ? 
                 <THead>Korter</THead> :
-                <THead>Kakandatel/KaUbis</THead>}
-                <THead>Kelas</THead>
+                <THead>Kakandatel/KaUbis</THead>} */}
                 <THead>Witel</THead>
               </TableRow>
             </TableHead>
             <TableBody>
-            {datas.map(data => (
+            {this.state.datas.map(data => (
               <UbisTable index={i++} data={data} />
             ))}
             </TableBody>
           </Table>
+          </div>
+          }
         </Grid>
+        }
       </Paper>
     )
   }

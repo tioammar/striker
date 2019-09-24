@@ -3,7 +3,6 @@ import './App.css';
 import TopBar from './components/TopBar';
 import Dashboard from './components/Dashboard';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Page from './components/pages/common/Page';
 import Sales from './components/pages/Sales';
 import C3MR from './components/pages/C3MR';
 import TTR from './components/pages/TTR';

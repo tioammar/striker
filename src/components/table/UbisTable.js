@@ -19,9 +19,8 @@ function UbisTable(props) {
     return (
       <TableRow>
         <TableCell>{index}.</TableCell>
-        <TableCell><Link to={'/detail/'+data.id} className={classes.link}>{data.name}</Link></TableCell>
-        <TableCell>{data.leader}</TableCell>
-        <TableCell>{data.class}</TableCell>
+        <TableCell><Link to={'/detail/'+data.id} className={classes.link}>{data.location}</Link></TableCell>
+        {/* <TableCell>{data.leader}</TableCell> */}
         <TableCell>{data.witel}</TableCell>
       </TableRow>
     )

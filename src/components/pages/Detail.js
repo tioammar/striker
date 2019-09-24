@@ -9,7 +9,12 @@ const styles = theme => ({
   },
   selector: {
     margin: 15,
-  }
+  },
+  tableContainer: {
+    marginTop: 20,
+    width: '100%',
+    overflowX: 'auto'
+  },
 });
 
 const THead = withStyles(theme => ({
@@ -113,14 +118,6 @@ class Detail extends Component {
     ];
 
     const months = [
-      {n: 'Januari', v: 1},
-      {n: 'Februari', v: 2},
-      {n: 'Maret', v: 3},
-      {n: 'April', v: 4},
-      {n: 'Mei', v: 5},
-      {n: 'Juni', v: 6},
-      {n: 'Juli', v: 7},
-      {n: 'Agustus', v: 8},
       {n: 'September', v: 9},
       {n: 'Oktober', v: 10},
       {n: 'November', v: 11},
@@ -145,9 +142,10 @@ class Detail extends Component {
         </Grid>
       </Grid>
       <Grid spacing={2} container>
-        <Grid item xs={8}>
+        <Grid item xs={12} sm={8} md={8}>
           <Card>
             <CardContent>
+              <div className={classes.tableContainer}>
               <Table>
                 <TableHead>
                   <TableRow>
@@ -164,11 +162,12 @@ class Detail extends Component {
                 ))}
                 </TableBody>
               </Table>
+              </div>
             </CardContent>
           </Card>
         </Grid>
         {datas.map(data => (
-        <Grid item xs={4}>
+        <Grid item xs={12} sm={6} md={4}>
           <Charts 
             title={data.title} 
             data={data.dummyData} 
@@ -178,7 +177,7 @@ class Detail extends Component {
             source={data.source}/>
         </Grid>
         ))}
-        <Grid item xs={4}>
+        <Grid item xs={12} sm={6} md={4}>
           <Card>
             <CardHeader 
               title='Network Reporting'
@@ -195,6 +194,7 @@ class Detail extends Component {
               title='Personil'
               titleTypographyProps={{variant: 'h6'}}/>
             <CardContent>
+              <div className={classes.tableContainer}>
               <Table>
                 <TableHead>
                   <TableRow>
@@ -211,6 +211,7 @@ class Detail extends Component {
                   ))}
                 </TableBody>
               </Table>
+              </div>
             </CardContent>
           </Card>
         </Grid>
