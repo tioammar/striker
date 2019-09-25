@@ -92,6 +92,8 @@ class Detail extends Component {
     ttr: [],
     gaul: [],
     c3mr: [],
+    location: "",
+    witel: ""
   }
 
   componentDidMount(){
@@ -113,6 +115,8 @@ class Detail extends Component {
           ttr: json.ttrTrend,
           gaul: json.gaulTrend,
           c3mr: json.c3mrTrend,
+          location: json.location,
+          witel: json.witel,
           isLoading: false,
           isError: false,
         });
@@ -159,7 +163,7 @@ class Detail extends Component {
     return (
       <div className={classes.main}>
       {/* <Typography>{this.state.type} id: {this.state.id}</Typography> */}
-      <Grid container className={classes.selector}>
+      {/* <Grid container className={classes.selector}>
         <Grid item xs={4}>
           <FormControl>
             <InputLabel>Bulan</InputLabel>
@@ -172,7 +176,7 @@ class Detail extends Component {
             </Select>
           </FormControl>
         </Grid>
-      </Grid>
+      </Grid> */}
       {this.state.isLoading ? 
       <LinearProgress className={classes.progress}/> :
       <div>
@@ -186,7 +190,9 @@ class Detail extends Component {
       <Grid spacing={2} container>
         <Grid item xs={12} sm={8} md={8}>
           <Card>
-            <CardContent>
+            <CardContent>          
+              <Typography variant='h5'>{this.state.location}</Typography>
+              <Typography variant='body1' color='textSecondary'>WITEL {this.state.witel}</Typography>
               <div className={classes.tableContainer}>
               <Table>
                 <TableHead>

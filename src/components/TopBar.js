@@ -13,6 +13,8 @@ import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 import LoopIcon from '@material-ui/icons/Loop';
 import QueuePlayNextIcon from '@material-ui/icons/QueuePlayNext';
 import { Link } from 'react-router-dom';
+import { Session } from 'bc-react-session';
+import HomeIcon from '@material-ui/icons/Home';
 
 const styles = theme => ({
   title: {
@@ -43,6 +45,7 @@ const styles = theme => ({
 
 class TopBar extends Component {
 
+  
   state = {
     drawerOpen: false,
   }
@@ -53,6 +56,11 @@ class TopBar extends Component {
     })
   }
 
+  onLogOut = () => {
+    this.closeDrawer();
+    this.props.onExitClicked();
+  }
+
   closeDrawer = () => {
     this.setState({
       drawerOpen: false,
@@ -60,11 +68,14 @@ class TopBar extends Component {
   }
   
   render() {
+    const session = Session.getSession();
+    const user = Session.getPayload();
+    let type = "";
+    if(user.lvl === 2) type = "ubis";
+    else if(user.lvl === 3) type = "tpt";
+
     const {classes} = this.props; // getting styles. see how to export at the bottom
-    // const menu = [
-    //   'Dashboard',
-    //   'Daftar TPT',
-    // ];
+
     return (
         <div>
         <AppBar position='static'>
@@ -108,16 +119,16 @@ class TopBar extends Component {
                   <ListItemText primary={text}/>
                   </ListItem>
                 ))} */}
+                <Link to={'/detail/'+type+'/'+user.idTerritory} className={classes.link}>
+                <ListItem button key='beranda' onClick={this.closeDrawer}>
+                  <ListItemIcon><HomeIcon /></ListItemIcon>
+                  <ListItemText primary='Beranda'/>
+                </ListItem>
+                </Link>
                 <Link to='/' className={classes.link}>
                 <ListItem button key='dashboard' onClick={this.closeDrawer}>
                   <ListItemIcon><BarChartIcon /></ListItemIcon>
                   <ListItemText primary='Dashboard'/>
-                </ListItem>
-                </Link>
-                <Link to='/territory' className={classes.link}>
-                <ListItem button key='territory' onClick={this.closeDrawer}>
-                  <ListItemIcon><ListIcon /></ListItemIcon>
-                  <ListItemText primary='Daftar Wilayah'/>
                 </ListItem>
                 </Link>
                 <Divider />
@@ -146,7 +157,7 @@ class TopBar extends Component {
                 </ListItem>
                 </Link>
                 <Divider />
-                <ListItem button key='keluar'>
+                <ListItem button onClick={this.onLogOut} key='keluar'>
                   <ListItemIcon><ExitToAppIcon /></ListItemIcon>
                   <ListItemText primary='Keluar'/>
                 </ListItem>
@@ -155,9 +166,6 @@ class TopBar extends Component {
             <Typhography className={classes.title} variant='h6' color='inherit'>
               {/* Nama: STRIKER (SISTEM MONITORING KINERJA KORTER) */}
               STRIKER TReg VII
-            </Typhography>
-            <Typhography variant='title' color='inherit'>
-              Hi, {this.props.username}!
             </Typhography>
           </Toolbar>
         </AppBar>

@@ -127,12 +127,12 @@ class Main extends Component {
         </Grid>
       </Grid>
       <Grid spacing={2} container>
-        <Grid item xs={12} sm={6} md={8}>
+        <Grid item xs={12} sm={6} md={12}>
           <Card>
             <CardHeader 
               title="Top 3 Territory" 
               titleTypographyProps={{variant:'h6'}}
-              subheader={'Mtd '+month+' '+this.state.year}
+              subheader={'Total Skor Mtd '+month+' '+this.state.year}
               subheaderTypographyProps={{variant:'button', color:'textSecondary'}}/>
             <CardContent>
               {this.state.isError ? 

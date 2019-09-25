@@ -1,8 +1,9 @@
 import React from 'react';
 import { Component } from "react";
-import { Grid, withStyles, Table, TableHead, TableRow, TableCell, TableBody, Paper, LinearProgress, Button, Chip } from "@material-ui/core";
+import { Grid, withStyles, Table, TableHead, TableRow, TableCell, TableBody, Paper, LinearProgress, Button, Chip, Typography } from "@material-ui/core";
 import Selector from '../../Selector';
 import DataTable from '../../table/DataTable';
+import {Session} from 'bc-react-session';
 
 const styles = theme => ({
   paper: {
@@ -103,7 +104,9 @@ class Page extends Component {
   }
 
   render() {
+    const session = Session.getPayload();
     const {classes} = this.props;
+    const user = session.user;
 
     const classSelection = [
       {n:'Kelas A', v:'A'},
@@ -115,6 +118,7 @@ class Page extends Component {
     return (
       <div>
       <Paper className={classes.paper}>
+      {/* <Typography>{user}</Typography> */}
       <Grid container xs={12} md={12} spacing={1}>
         <Grid item xs={9} sm={4} md={3}>
           <Selector 
@@ -155,7 +159,7 @@ function DataView(props){
           <THead align='right'>Target</THead>
           <THead align='right'>Realisasi</THead>
           <THead align='right'>Achievement</THead>
-          <THead align='right'>Growth</THead>
+          <THead align='right'>Gr. MoM</THead>
         </TableRow>
       </TableHead> 
       <TableBody>
