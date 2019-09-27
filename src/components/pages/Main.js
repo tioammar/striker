@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withStyles, Grid, LinearProgress, Card, CardHeader, CardContent, Table, TableRow, TableCell, TableBody, Chip, Typography } from "@material-ui/core";
 import Helper from '../../Helper';
+import { Link } from 'react-router-dom';
 
 const styles = theme => ({
   selector: {
@@ -26,6 +27,10 @@ const styles = theme => ({
     width: '80%',
     margin: 'auto',
     color: '#d32f2f'
+  },  
+  link: {
+    textDecoration: 'none',
+    color: 'inherit',
   }
 })
 
@@ -103,7 +108,7 @@ class Main extends Component {
           isLoading: false,
           isError: false,
         });
-        console.log(JSON.stringify(json))
+        // console.log(JSON.stringify(json))
       })
       .catch(error => {
         this.setState({
@@ -129,11 +134,13 @@ class Main extends Component {
       <Grid spacing={2} container>
         <Grid item xs={12} sm={6} md={12}>
           <Card>
+            <Link to='/allskor' className={classes.link}>
             <CardHeader 
               title="Top 3 Territory" 
               titleTypographyProps={{variant:'h6'}}
               subheader={'Total Skor Mtd '+month+' '+this.state.year}
               subheaderTypographyProps={{variant:'button', color:'textSecondary'}}/>
+            </Link>
             <CardContent>
               {this.state.isError ? 
               <Grid container xs={12} sm={12} md={12}>

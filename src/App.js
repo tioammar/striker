@@ -8,7 +8,7 @@ import C3MR from './components/pages/C3MR';
 import TTR from './components/pages/TTR';
 import Detail from './components/pages/Detail';
 import { withStyles } from '@material-ui/styles';
-import Territory from './components/pages/Territory';
+import TopTerritory from './components/pages/TopTerritory';
 import Gaul from './components/pages/Gaul';
 import {Session} from 'bc-react-session';
 import { Typography, Button, TextField, Grid, Paper, makeStyles } from '@material-ui/core';
@@ -135,7 +135,7 @@ class Login extends Component {
           <Paper style={{margin: 'auto', padding: 20, width: '75%'}}>
           <Grid container container xs={12} sm={12} md={12} spacing={2}>
             <Grid item xs={12} sm={12} md={12} spacing={2}>
-              <TextField style={{width: '100%'}} label="Email" onChange={this.onUserFilled}/>
+              <TextField style={{width: '100%'}} label="Username" onChange={this.onUserFilled}/>
             </Grid>
             <Grid item xs={12} sm={12} md={12} spacing={2}>
               <TextField style={{width: '100%', marginTop: 20}} type="password" label="Password" onChange={this.onPassFilled}/>
@@ -198,7 +198,7 @@ class App extends Component {
         <PrivateRoute path='/ttr' component={TTR}/>
         <PrivateRoute path='/gaul' component={Gaul}/>
         <PrivateRoute path='/c3mr' component={C3MR}/>
-        <PrivateRoute path='/territory' component={Territory}/>
+        <PrivateRoute path='/allskor' component={TopTerritory}/>
         {/* for setting param just add /:param. 
         and get param on component by using props.match.params.param */}
       </Router>

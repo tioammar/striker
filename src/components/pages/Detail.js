@@ -2,6 +2,7 @@ import React from 'react';
 import { Component } from "react";
 import { Chip, LinearProgress, Grid, Card, CardHeader, CardContent, withStyles, Table, TableCell, TableHead, TableRow, TableBody, MenuItem, Select, FormControl, InputLabel, Typography } from "@material-ui/core";
 import Charts from '../charts/Charts';
+import Helper from '../../Helper';
 
 const styles = theme => ({
   main: {
@@ -135,6 +136,8 @@ class Detail extends Component {
   }
 
   render() {
+    let helper = new Helper();
+    const month = helper.getMonth(this.state.month);
 
     const datas = [
       {title:'Gangguan Ulang', chart:'line', color:'#1565c0', route:'/gaul/', dummyData: this.state.gaul, source:'Nonatero', val:'%'},
@@ -192,7 +195,7 @@ class Detail extends Component {
           <Card>
             <CardContent>          
               <Typography variant='h5'>{this.state.location}</Typography>
-              <Typography variant='body1' color='textSecondary'>WITEL {this.state.witel}</Typography>
+              <Typography variant='body1' color='textSecondary'>WITEL {this.state.witel} (Mtd {month})</Typography>
               <div className={classes.tableContainer}>
               <Table>
                 <TableHead>

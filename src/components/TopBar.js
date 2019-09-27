@@ -128,7 +128,7 @@ class TopBar extends Component {
                 <Link to='/' className={classes.link}>
                 <ListItem button key='dashboard' onClick={this.closeDrawer}>
                   <ListItemIcon><BarChartIcon /></ListItemIcon>
-                  <ListItemText primary='Dashboard'/>
+                  <ListItemText primary='Reward'/>
                 </ListItem>
                 </Link>
                 <Divider />
