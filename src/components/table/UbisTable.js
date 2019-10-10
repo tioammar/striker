@@ -1,27 +1,30 @@
-import React from 'react';
-import { TableRow, TableCell, makeStyles } from '@material-ui/core';
+import React from "react";
+import { TableRow, TableCell, makeStyles } from "@material-ui/core";
 import { Link } from 'react-router-dom';
 
-const style = makeStyles({
+const styles = makeStyles({
   link: {
     textDecoration: 'none',
     color: 'inherit',
   }
 });
 
-function UbisTable(props){
-  const classes = style();
+function UbisTable(props) {
+  const classes = styles();
 
   const data = props.data;
   const index = props.index;
+  const type = props.type;
 
-  // order : No. | Ubis/Datel | KaUbit/Kakandatel | Witel
-  return (
-    <TableRow>
-      <TableCell>{index}.</TableCell>
-      <TableCell><Link to={'/ubis/'+data.id} className={classes.link}>{data.nama}</Link></TableCell>
-      <TableCell>{data.head}</TableCell>
-      <TableCell>{data.witel}</TableCell>
-    </TableRow>
-  )
+  // Order: No. | Nama | Kepala | Kelas | Witel
+    return (
+      <TableRow>
+        <TableCell>{index}.</TableCell>
+        <TableCell><Link to={'/detail/'+type+'/'+data.id} className={classes.link}>{data.location}</Link></TableCell>
+        {/* <TableCell>{data.leader}</TableCell> */}
+        <TableCell>{data.witel}</TableCell>
+      </TableRow>
+    )
 }
+
+export default UbisTable;

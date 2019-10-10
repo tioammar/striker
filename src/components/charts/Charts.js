@@ -15,8 +15,7 @@ function Charts(props){
   const classes = styles();
 
   function isBarChart(){
-    if(props.chart == 'bar') return true;
-    else return false;
+    return props.chart === 'bar';
   }
 
   return (
@@ -25,7 +24,7 @@ function Charts(props){
       <CardHeader 
         title={props.title} 
         titleTypographyProps={{variant:'h6'}}
-        subheader={'Source: '+props.source+' | Kelas: '+props.class}
+        subheader={'Source: '+props.source}
         subheaderTypographyProps={{variant:'caption', color:'textSecondary'}}/>
       </Link>
       <CardContent>

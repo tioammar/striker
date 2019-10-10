@@ -1,5 +1,5 @@
 import React from 'react';
-import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, Label } from 'recharts';
+import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip } from 'recharts';
 import { Paper, Typography, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 
@@ -37,7 +37,7 @@ function SimpleBarCharts(props){
   return (
     <ResponsiveContainer width='100%' height={200}> 
       <BarChart data={data}>
-        <XAxis dataKey="tpt" tick={{fontSize: 10}}/>
+        <XAxis dataKey="name" tick={{fontSize: 10}}/>
         <YAxis tick={{fontSize: 8}}/>
         <Tooltip content={<CustTooltip />}/>
         <Bar dataKey="ach" fill={color}>
