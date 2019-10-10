@@ -92,7 +92,7 @@ class Main extends Component {
 
   getData(bln){
     this.setState({isLoading: true});
-    let query = "http://localhost:8080/topterritory?bln="+bln;
+    let query = "http://10.144.1.77:8080/topterritory?bln="+bln;
     
     fetch(query)
       .then(response => {

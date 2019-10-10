@@ -103,7 +103,7 @@ class Detail extends Component {
 
   getData(){
     this.setState({isLoading: true});
-    let query = "http://localhost:8080/"+this.props.match.params.type+"detail?id="+this.props.match.params.id+"&bln="+this.state.month;
+    let query = "http://10.144.1.77:8080/"+this.props.match.params.type+"detail?id="+this.props.match.params.id+"&bln="+this.state.month;
     fetch(query)
       .then(response => {
         if(response.ok) return response.json();

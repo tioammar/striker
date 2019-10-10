@@ -79,8 +79,8 @@ class Page extends Component {
     this.setState({isLoading: true});
     let query = "";
     cls !== 'D' ? 
-      query = "http://localhost:8080/"+this.props.url+"tpt?cls="+cls+"&bln="+bln : 
-      query = "http://localhost:8080/"+this.props.url+"ubis?bln="+bln;
+      query = "http://10.144.1.77:8080/"+this.props.url+"tpt?cls="+cls+"&bln="+bln : 
+      query = "http://10.144.1.77:8080/"+this.props.url+"ubis?bln="+bln;
     
     fetch(query)
       .then(response => {

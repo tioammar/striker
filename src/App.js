@@ -96,7 +96,7 @@ class Login extends Component {
     data.append("email", this.state.user);
     data.append("password", this.state.pass);
 
-    fetch("http://localhost:8080/login?email="+this.state.user+"&password="+this.state.pass)
+    fetch("http://10.144.1.77:8080/login?email="+this.state.user+"&password="+this.state.pass)
       .then(response => {
         if(response.ok) return response.json();
         else throw Error(response.statusText);
@@ -185,7 +185,7 @@ class App extends Component {
     const session = Session.getPayload();
     return (
       <div>
-      <Router>
+      <Router basename='/striker'>
         {this.state.isLogin ?         
         <TopBar
           onExitClicked={this.logout}

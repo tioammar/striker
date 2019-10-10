@@ -57,8 +57,8 @@ class Territory extends Component {
   getData(cls){
     this.setState({isLoading: true})
     let query = cls === 'D' ?
-    "http://localhost:8080/ubislist" :
-    "http://localhost:8080/tptlist?cls="+cls;
+    "http://10.144.1.77:8080/ubislist" :
+    "http://10.144.1.77:8080/tptlist?cls="+cls;
 
     fetch(query)
     .then(response => {

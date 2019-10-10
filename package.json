@@ -22,6 +22,7 @@
   "eslintConfig": {
     "extends": "react-app"
   },
+  "homepage": "http://10.144.1.77/striker",
   "browserslist": {
     "production": [
       ">0.2%",
