@@ -1,9 +1,8 @@
 import React from 'react';
 import { Component } from "react";
-import { Grid, withStyles, Table, TableHead, TableRow, TableCell, TableBody, Paper, LinearProgress, Button, Chip, Typography } from "@material-ui/core";
+import { Grid, withStyles, Table, TableHead, TableRow, TableCell, TableBody, Paper, LinearProgress, Button, Chip } from "@material-ui/core";
 import Selector from '../../Selector';
 import TopDataTable from '../../table/TopDataTable';
-import {Session} from 'bc-react-session';
 
 const styles = theme => ({
   paper: {
@@ -105,9 +104,7 @@ class TopPage extends Component {
   }
 
   render() {
-    const session = Session.getPayload();
     const {classes} = this.props;
-    const user = session.user;
 
     const classSelection = [
       {n:'Kelas A', v:'A'},
