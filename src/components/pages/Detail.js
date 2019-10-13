@@ -1,6 +1,6 @@
 import React from 'react';
 import { Component } from "react";
-import { Chip, LinearProgress, Grid, Card, CardHeader, CardContent, withStyles, Table, TableCell, TableHead, TableRow, TableBody, MenuItem, Select, FormControl, InputLabel, Typography } from "@material-ui/core";
+import { Chip, LinearProgress, Grid, Card, CardContent, withStyles, Table, TableCell, TableHead, TableRow, TableBody, Typography } from "@material-ui/core";
 import Charts from '../charts/Charts';
 import Helper from '../../Helper';
 
@@ -39,20 +39,20 @@ const THead = withStyles(theme => ({
   }
 }))(TableCell);
 
-function PersonilTable(props){
-  const index = props.index;
-  const personil = props.data;
+// function PersonilTable(props){
+//   const index = props.index;
+//   const personil = props.data;
 
-  return (
-    <TableRow>
-      <TableCell>{index}.</TableCell>
-      <TableCell>{personil.nama}</TableCell>
-      <TableCell align='right'>{personil.nik}</TableCell>
-      <TableCell align='right'>{personil.job}</TableCell>
-      <TableCell align='right'>{personil.contact}</TableCell>
-    </TableRow>
-  )
-}
+//   return (
+//     <TableRow>
+//       <TableCell>{index}.</TableCell>
+//       <TableCell>{personil.nama}</TableCell>
+//       <TableCell align='right'>{personil.nik}</TableCell>
+//       <TableCell align='right'>{personil.job}</TableCell>
+//       <TableCell align='right'>{personil.contact}</TableCell>
+//     </TableRow>
+//   )
+// }
 
 function PerfTable(props){
 
@@ -147,22 +147,14 @@ class Detail extends Component {
     ];
     const {classes} = this.props;
 
-    const personil = [
-      {nama:'Personil A', nik:'XXXXX', job:'Koordinator', contact:'xxxxxx@xxx.com'},
-      {nama:'Personil B', nik:'XXXXX', job:'Assurance', contact:'xxxxxx@xxx.com'},
-      {nama:'Personil C', nik:'XXXXX', job:'Collection', contact:'xxxxxx@xxx.com'},
-      {nama:'Personil D', nik:'XXXXX', job:'Sales Force', contact:'xxxxxx@xxx.com'},
-      {nama:'Personil E', nik:'XXXXX', job:'Fulfillment', contact:'xxxxxx@xxx.com'}
-    ];
+    // const personil = [
+    //   {nama:'Personil A', nik:'XXXXX', job:'Koordinator', contact:'xxxxxx@xxx.com'},
+    //   {nama:'Personil B', nik:'XXXXX', job:'Assurance', contact:'xxxxxx@xxx.com'},
+    //   {nama:'Personil C', nik:'XXXXX', job:'Collection', contact:'xxxxxx@xxx.com'},
+    //   {nama:'Personil D', nik:'XXXXX', job:'Sales Force', contact:'xxxxxx@xxx.com'},
+    //   {nama:'Personil E', nik:'XXXXX', job:'Fulfillment', contact:'xxxxxx@xxx.com'}
+    // ];
 
-    const months = [
-      {n: 'September', v: 9},
-      {n: 'Oktober', v: 10},
-      {n: 'November', v: 11},
-      {n: 'Desember', v: 12},
-    ];
-
-    let i = 1;
     return (
       <div className={classes.main}>
       {/* <Typography>{this.state.type} id: {this.state.id}</Typography> */}

@@ -7,7 +7,6 @@ import { Box, Grid, List, ListItem, ListItemText, IconButton, ListItemIcon } fro
 import MenuIcon from '@material-ui/icons/Menu';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import BarChartIcon from '@material-ui/icons/BarChart';
-import ListIcon from '@material-ui/icons/List';
 import BuildIcon from '@material-ui/icons/Build';
 import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 import LoopIcon from '@material-ui/icons/Loop';
@@ -68,7 +67,6 @@ class TopBar extends Component {
   }
   
   render() {
-    const session = Session.getSession();
     const user = Session.getPayload();
     let type = "";
     if(user.lvl === 2) type = "ubis";

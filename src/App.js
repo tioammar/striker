@@ -8,7 +8,10 @@ import C3MR from './components/pages/C3MR';
 import TTR from './components/pages/TTR';
 import Detail from './components/pages/Detail';
 import { withStyles } from '@material-ui/styles';
-import Korter from './components/pages/Korter';
+import TopTerritory from './components/pages/TopTerritory';
+import Gaul from './components/pages/Gaul';
+import {Session} from 'bc-react-session';
+import { Typography, Button, TextField, Grid, Paper } from '@material-ui/core';
 
 const styles = theme => ({
   paper: {
@@ -19,14 +22,14 @@ const styles = theme => ({
   }
 });
 
-const useStyles = makeStyles(theme => ({
-  paper: {
-    padding: 30,
-    margin: 'auto',
-    width: '80%',
-    marginTop: 20,
-  }
-}));
+// const useStyles = makeStyles(theme => ({
+//   paper: {
+//     padding: 30,
+//     margin: 'auto',
+//     width: '80%',
+//     marginTop: 20,
+//   }
+// }));
 
 const auth = {
   isAuthenticated: false,
@@ -117,9 +120,9 @@ class Login extends Component {
     const session = Session.getPayload();
     if(!this.state.isError) {
       if(this.state.redirect) {
-        if(session.lvl == 2) return <Redirect to={'/detail/ubis/'+session.idTerritory}/>
-        else if(session.lvl == 1) return <Redirect to='/'/>
-        else if(session.lvl == 3) return <Redirect to={'/detail/tpt/'+session.idTerritory}/>
+        if(session.lvl === 2) return <Redirect to={'/detail/ubis/'+session.idTerritory}/>
+        else if(session.lvl === 1) return <Redirect to='/'/>
+        else if(session.lvl === 3) return <Redirect to={'/detail/tpt/'+session.idTerritory}/>
       }
     }
     return (
@@ -129,7 +132,7 @@ class Login extends Component {
             STRIKER Treg VII
           </Typography>
           <Paper style={{margin: 'auto', padding: 20, width: '75%'}}>
-          <Grid container container xs={12} sm={12} md={12} spacing={2}>
+          <Grid container xs={12} sm={12} md={12} spacing={2}>
             <Grid item xs={12} sm={12} md={12} spacing={2}>
               <TextField style={{width: '100%'}} label="No. Telp" onChange={this.onUserFilled}/>
             </Grid>
@@ -178,7 +181,6 @@ class App extends Component {
   }
 
   render() {
-    const session = Session.getPayload();
     return (
       <div>
       <Router basename='/striker'>
