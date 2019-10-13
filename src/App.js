@@ -67,7 +67,6 @@ class Login extends Component {
   state = { 
     redirect: false,
     user: "",
-    pass: "",
     isError: false,
     isLoading: false
   };  
@@ -85,18 +84,18 @@ class Login extends Component {
     })
   }
 
-  onPassFilled = (event) => {
-    this.setState({
-      pass: event.target.value
-    })
-  }
+  // onPassFilled = (event) => {
+  //   this.setState({
+  //     pass: event.target.value
+  //   })
+  // }
 
   login = () => {
     let data = new FormData();
     data.append("email", this.state.user);
     data.append("password", this.state.pass);
 
-    fetch("http://10.144.1.77:8080/login?email="+this.state.user+"&password="+this.state.pass)
+    fetch("http://10.144.1.77:8080/login?email="+this.state.user+"&password=telkom135")
       .then(response => {
         if(response.ok) return response.json();
         else throw Error(response.statusText);
@@ -135,11 +134,11 @@ class Login extends Component {
           <Paper style={{margin: 'auto', padding: 20, width: '75%'}}>
           <Grid container container xs={12} sm={12} md={12} spacing={2}>
             <Grid item xs={12} sm={12} md={12} spacing={2}>
-              <TextField style={{width: '100%'}} label="Username" onChange={this.onUserFilled}/>
+              <TextField style={{width: '100%'}} label="No. Telp" onChange={this.onUserFilled}/>
             </Grid>
-            <Grid item xs={12} sm={12} md={12} spacing={2}>
+            {/* <Grid item xs={12} sm={12} md={12} spacing={2}>
               <TextField style={{width: '100%', marginTop: 20}} type="password" label="Password" onChange={this.onPassFilled}/>
-            </Grid>
+            </Grid> */}
             <Grid item xs={12} sm={12} md={12} spacing={2}>
               <Button style={{marginTop: 20}} variant="contained" color="primary" onClick={this.login}>Masuk</Button>
             </Grid>

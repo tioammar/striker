@@ -119,12 +119,13 @@ class TopBar extends Component {
                   <ListItemText primary={text}/>
                   </ListItem>
                 ))} */}
+                {user.lvl === 1 ? "" :
                 <Link to={'/detail/'+type+'/'+user.idTerritory} className={classes.link}>
                 <ListItem button key='beranda' onClick={this.closeDrawer}>
                   <ListItemIcon><HomeIcon /></ListItemIcon>
                   <ListItemText primary='Beranda'/>
                 </ListItem>
-                </Link>
+                </Link>}
                 <Link to='/' className={classes.link}>
                 <ListItem button key='dashboard' onClick={this.closeDrawer}>
                   <ListItemIcon><BarChartIcon /></ListItemIcon>
